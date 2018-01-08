@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.scheme.createTable('users', (table) => {
+  return knex.schema.createTable('users', (table) => {
     table.increments();
     table.string('username').notNullable().unique();
     table.string('first_name');
@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('city');
     table.string('state');
     table.string('zip');
-    table.string('gender');
+    table.string('gender').notNullable();
     table.string('user_pic');
   })
 };

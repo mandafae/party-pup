@@ -5,6 +5,8 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable();
     table.string('sex').notNullable();
     table.boolean('fixed').notNullable().defaultTo(false);
+    table.integer('weight').notNullable();
+    table.string('breed').notNullable();
     table.integer('age_number').notNullable();
     table.string('age_unit').notNullable();
     table.string('play_style').notNullable();
@@ -13,6 +15,7 @@ exports.up = function(knex, Promise) {
     table.boolean('health_issues').notNullable().defaultTo(false);
     table.string('health_notes');
     table.string('bio');
+    table.string('dog_pic');
     table.integer('owner_id').notNullable();
   })
 };

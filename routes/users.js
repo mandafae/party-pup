@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
+//GET ALL THE USERS
+router.get('/', (req, res, next) => {
+  knex('users')
+})
+
 // GET users/:user_id
 // User profile
 router.get('/:user_id', (req, res, next) => {

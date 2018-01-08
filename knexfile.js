@@ -6,7 +6,7 @@ module.exports = {
     client: 'pg',
     connection: {
       debug: true,
-      database: 'partyPup_dev'
+      database: 'partypup_dev'
     }
   },
 
@@ -14,7 +14,7 @@ module.exports = {
     client: 'pg',
     connection: {
       debug: true,
-      database: 'partyPup_test'
+      database: 'partypup_test'
     }
   },
 
