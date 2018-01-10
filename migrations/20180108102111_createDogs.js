@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('dogs', (table) => {
     table.increments();
-    table.string('name').notNullable();
+    table.string('dog_name').notNullable();
     table.string('sex').notNullable();
     table.boolean('fixed').notNullable().defaultTo(false);
     table.integer('weight').notNullable();

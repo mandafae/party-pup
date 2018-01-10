@@ -3,20 +3,35 @@ const router = express.Router();
 const knex = require('../db/knex');
 const passport = require('passport')
 
-//GET ALL THE USERS
-router.get('/', (req, res, next) => {
-  knex('users')
-  .then(users => res.json(users));
-})
+// // GET users/:user_id
+// // User profile
+// router.get('/:user_id', (req, res, next) => {
+//   knex('users')
+//   .join('dogs', {'dogs.owner_id': 'users.id'})
+//   .where({'users.id': req.params.user_id})
+//   // .first()
+//   .then(user => {
+//     console.log(user);
+//     res.json(user);
+//   });
+// });
 
-// GET users/:user_id
-// User profile
 router.get('/:user_id', (req, res, next) => {
-  knex('users')
-  .where({id: req.params.user_id})
-  .first()
-  .then(user => res.json(user));
-});
+  knex('dogs')
+  .returning('*')
+  .where({owner_id: req.params.user_id})
+  .then(dogs => {
+    knex('users')
+    .where({'users.id': req.params.user_id})
+    .first()
+    .then(user => {
+      console.log("LATER DOG:", dogs);
+      user.dogs = dogs;
+      console.log("USER!!!", user);
+      res.json(user);
+    })
+  })
+})
 
 // POST users
 // Create new user

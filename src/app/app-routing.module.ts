@@ -5,7 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: ':id/dashboard', component: DashboardComponent }
+  { path: ':id/dashboard', component: DashboardComponent },
   { path: 'search', component: SearchComponent },
   { path: ':id/profile', component: ProfileComponent }
 ]

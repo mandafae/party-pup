@@ -41,10 +41,10 @@ app.use('/api/users', users);
 const dogs = require('./routes/dogs');
 app.use('/api/dogs', dogs);
 
-// //set up Angular catch all route
-// app.get('*', function(req, res) {
-//     res.sendFile(path.join(__dirname, './dist', 'index.html'));
-// });
+//set up Angular catch all route
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, './dist', 'index.html'));
+});
 
 //port listening
 app.listen(PORT, ()=>{
