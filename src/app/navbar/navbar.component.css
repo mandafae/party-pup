@@ -1,0 +1,19 @@
+nav {
+  text-align: right;
+  height: 50px;
+}
+
+button {
+  border: 0;
+  background: none;
+  box-shadow:none;
+  border-radius: 0px;
+}
+
+button:hover {
+
+}
+
+button:active {
+
+}
