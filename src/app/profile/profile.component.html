@@ -1,13 +1,13 @@
 <div class="container">
   <div class="card">
-    <img src="{{ user.user_pic }}" alt="Profile picture" class="profilePic">
+    <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture" class="profilePic">
     <h1>{{ user.username }}</h1>
     <h2>Your Information:</h2>
     <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}<br>
       <strong>Address:</strong> {{ user.street_address }}<br>
       {{ user.city }} {{ user.state }} {{ user.zip }}<br>
       <strong>Gender:</strong> {{ user.gender }}<br>
-    <button>Edit user info</button></p>
+    <a routerLink="/{{user.id}}/edit"><button>Edit user info</button></a></p>
     <h2>Your dog(s):</h2>
     <div *ngFor="let dog of user.dogs">
       <p><img src="#" alt="Dog picture"><br>
@@ -23,7 +23,7 @@
       <strong>Health Issues:</strong> {{ dog.health_issues }}<br>
       <strong>Health Notes:</strong> {{ dog.health_notes }}<br>
       <strong>Bio:</strong> {{ dog.bio }}<br>
-      <button>Edit dog info</button></p>
+      <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button>Edit dog info</button></a></p>
     </div>
   </div>
 </div>

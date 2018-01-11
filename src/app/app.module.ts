@@ -5,14 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchComponent } from './search/search.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { UpdateDogComponent } from './update-dog/update-dog.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './user.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DogsService } from './dogs.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [ UserService, DogsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

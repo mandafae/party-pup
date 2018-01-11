@@ -1,12 +1,12 @@
 export class User {
   id: number;
   username: string;
-  first_name: string;
-  last_name: string;
-  street_address: string;
-  city: string;
-  state: string;
-  zip: string;
-  gender: string;
-  user_pic: string;
+  first_name: any;
+  last_name: any;
+  street_address: any;
+  city: any;
+  state: any;
+  zip: any;
+  gender: any;
+  user_pic: any;
 }

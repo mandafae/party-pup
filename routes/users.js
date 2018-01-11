@@ -5,17 +5,6 @@ const passport = require('passport')
 
 // // GET users/:user_id
 // // User profile
-// router.get('/:user_id', (req, res, next) => {
-//   knex('users')
-//   .join('dogs', {'dogs.owner_id': 'users.id'})
-//   .where({'users.id': req.params.user_id})
-//   // .first()
-//   .then(user => {
-//     console.log(user);
-//     res.json(user);
-//   });
-// });
-
 router.get('/:user_id', (req, res, next) => {
   knex('dogs')
   .returning('*')
@@ -25,9 +14,7 @@ router.get('/:user_id', (req, res, next) => {
     .where({'users.id': req.params.user_id})
     .first()
     .then(user => {
-      console.log("LATER DOG:", dogs);
       user.dogs = dogs;
-      console.log("USER!!!", user);
       res.json(user);
     })
   })

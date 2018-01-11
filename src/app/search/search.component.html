@@ -48,15 +48,17 @@
       <label for="dog-male">Male</label>
       <input type="checkbox" id="dog-female">
       <label for="dog-female">Female</label>
-      <input type="radio" id="fixed">
+      <input type="radio" id="fixed" value="true">
       <label for="fixed">Required to be spayed/neutered?</label>
     </div>
     <div>
       <h3>Dog Parent's Gender</h3>
-      <input type="checkbox" id="human-male">
+      <input type="radio" name="gender" id="human-male" value="male">
       <label for="human-male">Male</label>
-      <input type="checkbox" id="human-female">
+      <input type="radio" name="gender" id="human-female" value="female">
       <label for="human-female">Female</label>
+      <input type="radio" name="gender" id="human-none">
+      <label for="human-none">No Preference</label>
     </div>
     <input type="submit">
   </form>

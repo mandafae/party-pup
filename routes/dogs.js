@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
+// GET dogs
+// Get all the dogs
+router.get('/', (req, res, next) => {
+  knex('dogs')
+  .returning('*')
+  .then(dogs => res.json(dogs));
+})
+
 // POST dogs
 // Add a new dog
 router.post('/', (req, res, next) => {

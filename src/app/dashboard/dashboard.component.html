@@ -1,3 +1,11 @@
-<p>
-  dashboard works!
-</p>
+<div class="container">
+  <div class="card" *ngFor="let dog of dogs">
+    <h3>{{ dog.dog_name }}</h3>
+    <p><img src="{{ dog.dog_pic }}" alt="{{ dog.dog_name }}'s photo"><br>
+    <strong>Weight:</strong> {{ dog.weight }} lbs<br>
+    <strong>Breed:</strong> {{ dog.breed }}<br>
+    <strong>Play Style(s):</strong> {{ dog.play_style }}<br>
+    <strong>Additional Information:</strong> {{ dog.play_notes }}<br>
+    <a href="#">Click for more information!</a>
+  </div>
+</div>
