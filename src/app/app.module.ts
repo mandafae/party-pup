@@ -14,6 +14,7 @@ import { UpdateDogComponent } from './update-dog/update-dog.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './user.service';
 import { DogsService } from './dogs.service';
+import { DogDetailComponent } from './dog-detail/dog-detail.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DogsService } from './dogs.service';
     UpdateInfoComponent,
     UpdateDogComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    DogDetailComponent
   ],
   imports: [
     BrowserModule,

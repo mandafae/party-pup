@@ -1,0 +1,22 @@
+p {
+  text-align: left;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 90%;
+  margin: 10px;
+  padding: 5px;
+  border: 1px #000000 solid;
+}
+
+.profilePic {
+  border-radius: 100%;
+}

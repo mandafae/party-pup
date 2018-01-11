@@ -13,12 +13,21 @@ const httpOptions = {
 @Injectable()
 export class DogsService {
 
+  private usersUrl = 'api/users';
   private dogsUrl = 'api/dogs';
 
   getDogs (): Observable<Dog[]> {
     return this.http.get<Dog[]>(this.dogsUrl)
       .pipe(
         catchError(this.handleError('getUser', []))
+      );
+  }
+
+  getDog (owner_id: number, dog_id: number): Observable<Dog> {
+    const url = `${this.usersUrl}/${owner_id}/dogs/${dog_id}`
+    return this.http.get<Dog>(url)
+      .pipe(
+        catchError(this.handleError<Dog>(`getDog id=${dog_id}`))
       );
   }
 

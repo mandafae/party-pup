@@ -6,6 +6,6 @@
     <strong>Breed:</strong> {{ dog.breed }}<br>
     <strong>Play Style(s):</strong> {{ dog.play_style }}<br>
     <strong>Additional Information:</strong> {{ dog.play_notes }}<br>
-    <a href="#">Click for more information!</a>
+    <a href="/{{ dog.owner_id }}/dogs/{{ dog.id }}">Click for more information!</a>
   </div>
 </div>
