@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="card">
+    <img width="300" alt="This pup is ready to party!" src="src/assets/images/hybrid-481934.jpg"><br>
+    <!--<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>-->
+    <form #form="ngForm" (ngSubmit)="signIn(form.value)">
+      <input type="text" placeholder="username" name="username" [ngModel]="username">
+      <input type="submit">
+    </form>
+    <br><br><a href="/auth/facebook">Sign In with Facebook</a>
+    <a href="/auth/twitter">Sign In with Twitter</a>
+    <a href="/auth/google">Sign In with Google</a>
+    <div id="status"></div>
+  </div>
+</div>

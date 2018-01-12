@@ -1,5 +1,5 @@
-<nav>
+<nav *ngIf="user">
   <a routerLink="/search"><button>Search</button></a>
-  <a routerLink="/inbox"><button>Messages</button></a>
-  <a routerLink="{{user.id}}/profile"><button>Profile</button></a>
+  <a routerLink="{{ user.id }}/inbox"><button>Messages</button></a>
+  <a routerLink="{{ user.id }}/profile"><button>Profile</button></a>
 </nav>

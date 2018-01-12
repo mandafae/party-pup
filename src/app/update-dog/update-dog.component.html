@@ -1,51 +1,54 @@
-<div>
-  <form>
-    <h3>Add A New Dog</h3>
-    <input type="text" id="dogName" placeholder="Name">
-    <input type="radio" name="sex" id="male" value="male">
-    <label for="male">Male</label>
-    <input type="radio" name="sex" id="female" value="female">
-    <label for="female">Female</label>
-    <span>Spayed/neutered?</span>
-    <input type="checkbox" id="fixed" value="true">
-    <label for="fixed">Yes</label>
-    <input type="number" id="weight" placeholder="Weight (in lbs)">
-    <input type="text" id="breed" placeholder="Breed">
-    <input type="number" id="age-number" placeholder="Age">
-    <select id="age-unit">
-      <option value="years">years</option>
-      <option value="months">months</option>
-      <option value="weeks">weeks</option>
-    </select>
-    <h4>Play Style(s):</h4>
-      <input type="checkbox" id="cushy" value="cushy">
-      <label for="cushy">Cushy</label>
-      <input type="checkbox" id="explorer" value="explorer">
-      <label for="explorer">Explorer</label>
-      <input type="checkbox" id="shy" value="shy">
-      <label for="shy">Shy</label>
-      <input type="checkbox" id="cheerleader" value="cheerleader">
-      <label for="cheerleader">Cheerleader</label>
-      <input type="checkbox" id="speed" value="speed">
-      <label for="speed">Speed Demon</label>
-      <input type="checkbox" id="tag" value="tag">
-      <label for="tag">Tag, You're It!</label>
-      <input type="checkbox" id="wrestler" value="wrestler">
-      <label for="wrestler">Wrestler</label>
-      <input type="checkbox" id="boxer" value="boxer">
-      <label for="boxer">Boxer</label>
-      <input type="checkbox" id="body-slammer" value="body-slammer">
-      <label for="body-slammer">Body Slammer</label>
-      <textarea id="play-notes" placeholder="Notes"></textarea>
-    <span>Fenced in areas required?</span>
-    <input type="checkbox" id="fence" value="true">
-    <label for="fence">Yes</label>
-    <span>Any health issues we should know about?</span>
-    <input type="checkbox" id="health" value="true">
-    <label for="health">Yes</label>
-    <textarea id="health-notes" placeholder="e.g., seizures, arthritis, etc"></textarea>
-    <textarea id="bio" placeholder="Tell us about your pup!"></textarea>
-    <span>Will add photo upload later</span>
-    <input type="submit">
-  </form>
+<div class="container">
+  <div class="card">
+    <form>
+      <h3>Add A New Dog</h3>
+      <input type="text" id="dogName" placeholder="Name">
+      <input type="radio" name="sex" id="male" value="male">
+      <label for="male">Male</label>
+      <input type="radio" name="sex" id="female" value="female">
+      <label for="female">Female</label>
+      <span>Spayed/neutered?</span>
+      <input type="checkbox" id="fixed" value="true">
+      <label for="fixed">Yes</label>
+      <input type="number" id="weight" placeholder="Weight (in lbs)">
+      <input type="text" id="breed" placeholder="Breed">
+      <input type="number" id="age-number" placeholder="Age">
+      <select id="age-unit">
+        <option value="years">years</option>
+        <option value="months">months</option>
+        <option value="weeks">weeks</option>
+      </select>
+      <h4>Play Style(s):</h4>
+        <input type="checkbox" id="cushy" value="cushy">
+        <label for="cushy">Cushy</label>
+        <input type="checkbox" id="explorer" value="explorer">
+        <label for="explorer">Explorer</label>
+        <input type="checkbox" id="shy" value="shy">
+        <label for="shy">Shy</label>
+        <input type="checkbox" id="cheerleader" value="cheerleader">
+        <label for="cheerleader">Cheerleader</label>
+        <input type="checkbox" id="speed" value="speed">
+        <label for="speed">Speed Demon</label>
+        <input type="checkbox" id="tag" value="tag">
+        <label for="tag">Tag, You're It!</label>
+        <input type="checkbox" id="wrestler" value="wrestler">
+        <label for="wrestler">Wrestler</label>
+        <input type="checkbox" id="boxer" value="boxer">
+        <label for="boxer">Boxer</label>
+        <input type="checkbox" id="body-slammer" value="body-slammer">
+        <label for="body-slammer">Body Slammer</label>
+        <textarea id="play-notes" placeholder="Notes"></textarea>
+      <span>Fenced in areas required?</span>
+      <input type="checkbox" id="fence" value="true">
+      <label for="fence">Yes</label>
+      <span>Any health issues we should know about?</span>
+      <input type="checkbox" id="health" value="true">
+      <label for="health">Yes</label>
+      <textarea id="health-notes" placeholder="e.g., seizures, arthritis, etc"></textarea>
+      <textarea id="bio" placeholder="Tell us about your pup!"></textarea>
+      <span>Will add photo upload later</span>
+      <input type="submit">
+    </form>
+    <button (click)="goBack()">Cancel</button>
+  </div>
 </div>

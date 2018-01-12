@@ -25,7 +25,6 @@ app.use(methodOverride('_method'));
 app.use(session({ secret: process.env.SECRET_KEY }));
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(app.router);
 
 //set up cors
 app.use(cors());

@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
-
+import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './user.service';
 import { DogsService } from './dogs.service';
 import { DogDetailComponent } from './dog-detail/dog-detail.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
@@ -26,13 +28,16 @@ import { DogDetailComponent } from './dog-detail/dog-detail.component';
     UpdateDogComponent,
     ProfileComponent,
     DashboardComponent,
-    DogDetailComponent
+    DogDetailComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpModule,
+    AuthModule
   ],
   providers: [ UserService, DogsService ],
   bootstrap: [AppComponent]

@@ -1,41 +1,43 @@
+require('dotenv').load();
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const OAuthStrategy = require('passport-oauth').OAuthStrategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
-// Local Strategy config
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+router.post('/login', (req, res, next) => {
+  console.log("IN THE ROUTE!");
+  knex('users')
+  .where({username: req.body.username})
+  .first()
+  .then(user => {
+    console.log(user);
+    res.json(user)
+  });
+})
+
+// Facebook Strategy config
+console.log("FACEBOOK STRATEGY!");
+passport.use(new FacebookStrategy({
+    clientID: process.env.FBclientID,
+    clientSecret: process.env.FBclientSecret,
+    callbackURL: process.env.FBcallbackURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log('RANDOM FUNCTION???');
+    console.log(profile);
+    knex('users')
+    .where({username: req.body.username})
+    .first()
+    .then(user => {
+      console.log(user);
+      res.json(user)
     });
   }
 ));
-
-// Facebook Strategy config
-// passport.use(new FacebookStrategy({
-//     clientID: FACEBOOK_APP_ID,
-//     clientSecret: FACEBOOK_APP_SECRET,
-//     callbackURL: "http://www.example.com/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate(..., function(err, user) {
-//       if (err) { return done(err); }
-//       done(null, user);
-//     });
-//   }
-// ));
 
 // Twitter Strategy config
 // passport.use(new TwitterStrategy({
@@ -64,19 +66,13 @@ passport.use(new LocalStrategy(
 //   }
 // ));
 
-// Local route
-router.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
 
-// // Facebook route
-// router.get('/auth/facebook', passport.authenticate('facebook'));
-//
-// router.get('/auth/facebook/callback',
-//   passport.authenticate('facebook', { successRedirect: '/',
-//                                       failureRedirect: '/login' }));
+// Facebook route
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/search',
+                                      failureRedirect: '/' }));
 //
 // // Twitter route
 // router.get('/auth/twitter', passport.authenticate('twitter'));
