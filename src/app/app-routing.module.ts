@@ -10,11 +10,11 @@ import { UpdateDogComponent } from './update-dog/update-dog.component';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
-  { path: ':id/dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'search', component: SearchComponent },
   { path: ':owner_id/dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/profile', component: ProfileComponent },
-  { path: ':id/:edit', component: UpdateInfoComponent },
+  { path: ':id/edit', component: UpdateInfoComponent },
   { path: ':id/dogs/:dog_id/edit', component: UpdateDogComponent }
 ]
 

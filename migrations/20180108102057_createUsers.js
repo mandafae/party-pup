@@ -11,6 +11,9 @@ exports.up = function(knex, Promise) {
     table.string('zip');
     table.string('gender').notNullable();
     table.string('user_pic');
+    table.string('FB_id');
+    table.string('twitter_id');
+    table.string('google_id');
   })
 };
 

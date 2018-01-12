@@ -8,36 +8,51 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
-router.post('/login', (req, res, next) => {
-  console.log("IN THE ROUTE!");
-  knex('users')
-  .where({username: req.body.username})
-  .first()
-  .then(user => {
-    console.log(user);
-    res.json(user)
-  });
-})
+// router.post('/login', (req, res, next) => {
+//   console.log("IN THE ROUTE!");
+//   knex('users')
+//   .where({username: req.body.username})
+//   .first()
+//   .then(user => {
+//     console.log(user);
+//     res.json(user)
+//   });
+// })
 
 // Facebook Strategy config
 console.log("FACEBOOK STRATEGY!");
 passport.use(new FacebookStrategy({
     clientID: process.env.FBclientID,
     clientSecret: process.env.FBclientSecret,
-    callbackURL: process.env.FBcallbackURL
+    callbackURL: "http://localhost:8080/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('RANDOM FUNCTION???');
-    console.log(profile);
+    console.log("I'M IN THE FUNCTION!");
+    console.log("FB PROFILE:", profile);
     knex('users')
-    .where({username: req.body.username})
+    .where({FB_id: profile.id})
     .first()
     .then(user => {
-      console.log(user);
-      res.json(user)
+      console.log("USER:", user);
+      done(null,user);
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  console.log("DESERIALIZE");
+  console.log("DESERIALIZE ID:", id);
+  knex('users')
+  .where({id: id})
+  .first()
+  .then(user => {
+    console.log(user);
+    done(null,user);
+  });
+});
 
 // Twitter Strategy config
 // passport.use(new TwitterStrategy({
@@ -68,10 +83,10 @@ passport.use(new FacebookStrategy({
 
 
 // Facebook route
-router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook'));
 
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/search',
+router.get('/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/dashboard',
                                       failureRedirect: '/' }));
 //
 // // Twitter route
