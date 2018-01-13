@@ -12,6 +12,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session')
 
+//set up cors
+app.use(cors());
+
 //set up static files
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -25,9 +28,6 @@ app.use(methodOverride('_method'));
 app.use(session({ secret: process.env.SECRET_KEY }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-//set up cors
-app.use(cors());
 
 //set up morgan
 app.use(morgan('dev'));

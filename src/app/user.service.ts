@@ -27,6 +27,13 @@ export class UserService {
       );
   }
 
+  FBgetUser(user: any): Observable<User> {
+    return this.http.post<User>(`auth/facebook/${user.id}`, user, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('FBgetUser'))
+      );
+  }
+
   // editUser (user: User): Observable<any> {
   //   const url = `${this.usersUrl}/${id}`
   //   return this.http.patch(url, user, httpOptions)

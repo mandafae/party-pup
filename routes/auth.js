@@ -7,6 +7,7 @@ const OAuthStrategy = require('passport-oauth').OAuthStrategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const cookies = require('ng2-cookies')
 
 // router.post('/login', (req, res, next) => {
 //   console.log("IN THE ROUTE!");
@@ -19,40 +20,52 @@ const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 //   });
 // })
 
-// Facebook Strategy config
-console.log("FACEBOOK STRATEGY!");
-passport.use(new FacebookStrategy({
-    clientID: process.env.FBclientID,
-    clientSecret: process.env.FBclientSecret,
-    callbackURL: "http://localhost:8080/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    console.log("I'M IN THE FUNCTION!");
-    console.log("FB PROFILE:", profile);
-    knex('users')
-    .where({FB_id: profile.id})
-    .first()
-    .then(user => {
-      console.log("USER:", user);
-      done(null,user);
-    });
-  }
-));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-passport.deserializeUser(function(id, done) {
-  console.log("DESERIALIZE");
-  console.log("DESERIALIZE ID:", id);
+router.post('/facebook/:id', (req, res, next) => {
+  console.log("req.body:", req.body);
   knex('users')
-  .where({id: id})
-  .first()
+  .returning('*')
+  .where({FB_id: req.params.id})
+  // .first()
+  .update({user_pic: req.body.photoUrl})
   .then(user => {
-    console.log(user);
-    done(null,user);
-  });
-});
+    console.log("EXPRESS USER:", user);
+    res.json(user)
+  })
+})
+
+// // Facebook Strategy config
+// //console.log("FACEBOOK STRATEGY!");
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.FBclientID,
+//     clientSecret: process.env.FBclientSecret,
+//     callbackURL: "http://localhost:8080/auth/facebook/callback"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     //console.log("I'M IN THE FUNCTION!");
+//     //console.log("FB PROFILE:", profile);
+//     knex('users')
+//     .where({FB_id: profile.id})
+//     .first()
+//     .then(user => {
+//       //console.log("USER:", user);
+//       done(null,user);
+//     });
+//   }
+// ));
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
+// passport.deserializeUser(function(id, done) {
+//   //console.log("DESERIALIZE");
+//   //console.log("DESERIALIZE ID:", id);
+//   knex('users')
+//   .where({id: id})
+//   .first()
+//   .then(user => {
+//     done(null,user);
+//   });
+// });
 
 // Twitter Strategy config
 // passport.use(new TwitterStrategy({
@@ -82,12 +95,26 @@ passport.deserializeUser(function(id, done) {
 // ));
 
 
-// Facebook route
-router.get('/facebook', passport.authenticate('facebook'));
-
-router.get('/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/dashboard',
-                                      failureRedirect: '/' }));
+// // Facebook route
+// router.get('/facebook', passport.authenticate('facebook'));
+//
+// // router.get('/facebook/callback',
+// //   passport.authenticate('facebook'), (req,res)=>{
+// //     console.log(res);
+// //     res.json(res.req.user)
+// //   });
+//
+//   router.get('/facebook/callback',
+//   passport.authenticate('facebook', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     res.cookie('test', JSON.stringify(req.session.passport)) // access cookies in angular
+//     // console.log("res.cookie", res.cookie);
+//     // console.log("req.session", req.session);
+//     let redirectUrl = `/${res.req.user.id}/dashboard`;
+//     console.log(res.req.user);
+//     res.redirect(redirectUrl);
+//     //res.json(res.req.user);
+//   });
 //
 // // Twitter route
 // router.get('/auth/twitter', passport.authenticate('twitter'));
@@ -97,10 +124,10 @@ router.get('/facebook/callback',
 //                                      failureRedirect: '/login' }));
 //
 // // Google route
-// app.get('/auth/google',
+// router.get('/auth/google',
 //   passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' });
 //
-// app.get('/auth/google/callback',
+// router.get('/auth/google/callback',
 //   passport.authenticate('google', { failureRedirect: '/login' }),
 //   function(req, res) {
 //     res.redirect('/');

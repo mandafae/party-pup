@@ -6,9 +6,8 @@
       <input type="text" placeholder="username" name="username" [ngModel]="username">
       <input type="submit">
     </form>
-    <br><br><a href="/auth/facebook">Sign In with Facebook</a>
+    <br><br><button (click)="signInWithFB()">Sign In with Facebook</button>
     <a href="/auth/twitter">Sign In with Twitter</a>
     <a href="/auth/google">Sign In with Google</a>
-    <div id="status"></div>
   </div>
 </div>

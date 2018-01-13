@@ -1,4 +1,4 @@
-<nav *ngIf="user">
+<nav *ngIf="loggedIn">
   <a routerLink="/search"><button>Search</button></a>
   <a routerLink="{{ user.id }}/inbox"><button>Messages</button></a>
   <a routerLink="{{ user.id }}/profile"><button>Profile</button></a>

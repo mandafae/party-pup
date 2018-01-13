@@ -4,8 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthHttp } from 'angular2-jwt';
+import { Location } from '@angular/common';
+import { AuthService } from "angular4-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
+import { SocialUser } from "angular4-social-login";
 
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signin',
@@ -13,33 +18,63 @@ import { User } from '../user';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  user: any;
+  user: User;
+  private socialUser: SocialUser;
+  private loggedIn: boolean;
 
-  constructor(public authHttp: AuthHttp) {}
+  constructor(private authService: AuthService, private userService: UserService) { }
+
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.userService.FBgetUser(this.socialUser)
+      .subscribe(user => this.user = user);
+      console.log("MY USER:", this.user);
+      location.pathname = `${this.user.id}/dashboard`;
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.loggedIn = (user != null);
+      console.log("socialUser:", this.socialUser);
+      console.log("loggedIn:", this.loggedIn);
+    });
   }
 
-  signIn(formData) {
-    console.log('SIGN IN FUNCTION!');
-    console.log(formData);
-    let username = formData;
-    this.authHttp.post('api/auth/login', username)
-      .subscribe(
-        data => this.user = data,
-        err => console.log(err),
-        () => console.log('Request Complete')
-      );
-  }
 
-  FBsignIn() {
-    console.log('FB SIGN IN');
-    this.authHttp.get('api/auth/facebook')
-    .subscribe(
-      data => this.user = data,
-      err => console.log(err),
-      () => console.log('Request Complete')
-    );
-  }
+
+  // signIn(formData) {
+  //   console.log('SIGN IN FUNCTION!');
+  //   console.log(formData);
+  //   let username = formData;
+  //   this.http.post('auth/login', username)
+  //     .subscribe(
+  //       data => this.user = data,
+  //       err => console.log(err),
+  //       () => console.log('Request Complete')
+  //     );
+  // }
+  //
+  // FBsignIn() {
+  //   console.log('FB SIGN IN');
+  //   this.http.get('auth/facebook')
+  //   .subscribe(
+  //     data => {
+  //       console.log(data)
+  //       this.user = data;
+  //       location.pathname = "/dashboard";
+  //     },
+  //     err => console.log(err),
+  //     () => console.log('Request Complete')
+  //   );
+  // }
 
 }
