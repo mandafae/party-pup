@@ -12,7 +12,8 @@ exports.seed = function(knex, Promise) {
                 city: 'Austin',
                 state: 'TX',
                 zip: '78701',
-                gender: 'female'},
+                gender: 'female',
+                hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G'},
         {id: 2, username: 'Pookie4Ever',
                 first_name: 'John',
                 last_name: 'Johnson',
@@ -20,7 +21,8 @@ exports.seed = function(knex, Promise) {
                 city: 'Austin',
                 state: 'TX',
                 zip: '78757',
-                gender: 'male'},
+                gender: 'male',
+                hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G'},
         {id: 3, username: 'dogzRuleCatzDrool',
                 first_name: 'Tom',
                 last_name: 'Jones',
@@ -28,7 +30,8 @@ exports.seed = function(knex, Promise) {
                 city: 'Austin',
                 state: 'TX',
                 zip: '78705',
-                gender: 'male'},
+                gender: 'male',
+                hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G'},
         {id: 4, username: 'mandafae',
                 first_name: 'Amanda',
                 last_name: 'Freeman',
@@ -37,7 +40,9 @@ exports.seed = function(knex, Promise) {
                 state: 'TX',
                 zip: '78757',
                 gender: 'female',
-                FB_id: '10156160062123413'},
+                hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G',
+                FB_id: '10156160062123413',
+                google_id: '117063124051141470842'},
         {id: 5, username: 'puppyLove824',
                 first_name: 'Lisa',
                 last_name: 'Palmer',
@@ -45,7 +50,8 @@ exports.seed = function(knex, Promise) {
                 city: 'Austin',
                 state: 'TX',
                 zip: '78701',
-                gender: 'female'}
+                gender: 'female',
+                hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G'}
       ]);
     });
 };

@@ -16,16 +16,27 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  user: User;
+  user: any;
 
   constructor(
+    private http: HttpClient,
     private authService: AuthService,
     private userService: UserService
     ) { }
 
+  signIn(formData) {
+    console.log('SIGN IN FUNCTION!');
+    console.log(formData);
+    this.http.post('auth/login', formData)
+      .subscribe((data) => {
+        this.user = data;
+        location.pathname = `${this.user.id}/dashboard`
+      });
+  }
+
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    location.pathname = '4/dashboard';
+    //location.pathname = '4/dashboard';
   }
 
   signInWithFB(): void {
@@ -33,8 +44,8 @@ export class SigninComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.userService.FBgetUser(user)
         .subscribe(user => this.user = user);
-          console.log("USER:", this.user)
-      location.pathname = `${this.user.id}/dashboard`;
+        console.log("FB SIGN IN USER:", this.user)
+        location.pathname = `${this.user.id}/dashboard`;
     });
   }
 
@@ -44,33 +55,5 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
-  // signIn(formData) {
-  //   console.log('SIGN IN FUNCTION!');
-  //   console.log(formData);
-  //   let username = formData;
-  //   this.http.post('auth/login', username)
-  //     .subscribe(
-  //       data => this.user = data,
-  //       err => console.log(err),
-  //       () => console.log('Request Complete')
-  //     );
-  // }
-  //
-  // FBsignIn() {
-  //   console.log('FB SIGN IN');
-  //   this.http.get('auth/facebook')
-  //   .subscribe(
-  //     data => {
-  //       console.log(data)
-  //       this.user = data;
-  //       location.pathname = "/dashboard";
-  //     },
-  //     err => console.log(err),
-  //     () => console.log('Request Complete')
-  //   );
-  // }
 
 }

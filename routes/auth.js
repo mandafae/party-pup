@@ -1,30 +1,45 @@
 require('dotenv').load();
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt-as-promised');
 const knex = require('../db/knex');
-const passport = require('passport');
-const OAuthStrategy = require('passport-oauth').OAuthStrategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
-const TwitterStrategy = require('passport-twitter').Strategy;
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const cookies = require('ng2-cookies')
 
-// router.post('/login', (req, res, next) => {
-//   console.log("IN THE ROUTE!");
-//   knex('users')
-//   .where({username: req.body.username})
-//   .first()
-//   .then(user => {
-//     console.log(user);
-//     res.json(user)
-//   });
-// })
+router.post('/login', (req, res, next) => {
+  console.log("IN THE ROUTE!");
+  console.log("req.body:", req.body);
+  knex('users')
+  .where({username: req.body.username})
+  .first()
+  .then(user => bcrypt.compare(req.body.password,user.hash)
+    .then(valid => {
+      if(valid) {
+        console.log("EXPRESS USER:", user);
+        res.json(user)
+      }
+  }).catch( (invalid) => {
+    console.log("ERROR");
+  }))
+})
 
 router.post('/facebook/:id', (req, res, next) => {
   console.log("req.body:", req.body);
   knex('users')
   .returning('*')
   .where({FB_id: req.params.id})
+  .first()
+  .update({user_pic: req.body.photoUrl})
+  .then(user => {
+    console.log("EXPRESS USER:", user);
+    res.json(user)
+  })
+})
+
+router.post('/google/:id', (req, res, next) => {
+  console.log("req.body:", req.body);
+  knex('users')
+  .returning('*')
+  .where({google_id: req.params.id})
   .first()
   .update({user_pic: req.body.photoUrl})
   .then(user => {

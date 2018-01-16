@@ -33,6 +33,7 @@
     "@angular/router": "^5.0.0",
     "angular2-jwt": "^0.2.3",
     "angular4-social-login": "^1.1.1",
+    "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",
