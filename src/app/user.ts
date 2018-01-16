@@ -9,4 +9,6 @@ export class User {
   zip: any;
   gender: any;
   user_pic: any;
+  FB_id: any;
+  google_id: any;
 }

@@ -21,10 +21,10 @@ import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { SigninComponent } from './signin/signin.component';
 
 let config = new AuthServiceConfig([
-  // {
-  //   id: GoogleLoginProvider.PROVIDER_ID,
-  //   provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
-  // },
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("380430961127-5en61k87ob8hpnl8fijrbfg9pm0h9tev.apps.googleusercontent.com")
+  },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider("1990306837854412")

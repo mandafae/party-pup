@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthHttp } from 'angular2-jwt';
-import { Location } from '@angular/common';
-import { AuthService } from "angular4-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
-import { SocialUser } from "angular4-social-login";
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from "angular4-social-login";
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -19,21 +17,25 @@ import { UserService } from '../user.service';
 })
 export class SigninComponent implements OnInit {
   user: User;
-  private socialUser: SocialUser;
-  private loggedIn: boolean;
 
-  constructor(private authService: AuthService, private userService: UserService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+    ) { }
 
-  // signInWithGoogle(): void {
-  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    location.pathname = '4/dashboard';
+  }
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    this.userService.FBgetUser(this.socialUser)
-      .subscribe(user => this.user = user);
-      console.log("MY USER:", this.user);
+    this.authService.authState.subscribe((user) => {
+      this.userService.FBgetUser(user)
+        .subscribe(user => this.user = user);
+          console.log("USER:", this.user)
       location.pathname = `${this.user.id}/dashboard`;
+    });
   }
 
   signOut(): void {
@@ -41,12 +43,6 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.loggedIn = (user != null);
-      console.log("socialUser:", this.socialUser);
-      console.log("loggedIn:", this.loggedIn);
-    });
   }
 
 

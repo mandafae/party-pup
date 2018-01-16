@@ -1,13 +1,18 @@
 <div class="container">
   <div class="card">
-    <img width="300" alt="This pup is ready to party!" src="src/assets/images/hybrid-481934.jpg"><br>
+    <img width="300" alt="This pup is ready to party!" src="src/assets/images/hybrid-481934.jpg">
     <!--<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>-->
-    <form #form="ngForm" (ngSubmit)="signIn(form.value)">
-      <input type="text" placeholder="username" name="username" [ngModel]="username">
-      <input type="submit">
-    </form>
-    <br><br><button (click)="signInWithFB()">Sign In with Facebook</button>
-    <a href="/auth/twitter">Sign In with Twitter</a>
-    <a href="/auth/google">Sign In with Google</a>
+    <div>
+      <span>Sign in/create Party Pup account:</span>
+      <form #form="ngForm" (ngSubmit)="signIn(form.value)">
+        <input type="text" placeholder="Username" name="username" [ngModel]="username">
+        <input type="password" placeholder="Password" name="password" [ngModel]="password">
+        <input type="submit">
+      </form>
+    </div>
+    <div>
+      <span>Or sign in with:</span><button (click)="signInWithFB()">Facebook</button>
+      <button (click)="signInWithGoogle()">Google</button>
+    </div>
   </div>
 </div>

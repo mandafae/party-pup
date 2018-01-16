@@ -25,7 +25,7 @@ router.post('/facebook/:id', (req, res, next) => {
   knex('users')
   .returning('*')
   .where({FB_id: req.params.id})
-  // .first()
+  .first()
   .update({user_pic: req.body.photoUrl})
   .then(user => {
     console.log("EXPRESS USER:", user);

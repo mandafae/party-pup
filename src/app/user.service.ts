@@ -13,6 +13,7 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
+  user: User;
   private usersUrl = 'api/users';
 
   // postUser (user: User): Observable<User> {
