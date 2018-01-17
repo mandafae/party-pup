@@ -50,11 +50,12 @@ router.patch('/:user_id', (req, res, next) => {
 // DELETE users/:user_id
 // Delete account
 router.delete('/:user_id', (req, res, next) => {
+  console.log("DELETE ROUTE!!");
   knex('users')
   .where({id: req.params.user_id})
   .first()
   .del()
-  .then(() => res.send('User deleted'));
+  .then(() => res.json('User deleted'));
 });
 
 // GET users/:user_id/dogs/:dog_id

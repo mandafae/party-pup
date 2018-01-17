@@ -53,11 +53,13 @@ export class UserService {
     const url = `${this.usersUrl}/${user.id}`
     return this.http.patch<User>(url, user, httpOptions)
   }
-  //
-  // deleteUser (id: number): Observable<User> {
-  //   const url = `${this.usersUrl}/${id}`
-  //   return this.http.delete<User>(url)
-  // }
+
+  deleteUser(id) {
+    console.log("SERVICE FUNCTION FIRED!")
+    console.log("ID IN SERVICE:", id)
+    const url = `${this.usersUrl}/${id}`
+    return this.http.delete(url).subscribe(res => console.log(res));
+  }
 
   // Error handling
   private handleError<T> (operation = 'operation', result?: T) {

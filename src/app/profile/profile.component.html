@@ -1,78 +1,85 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="card">
-    <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture" class="profilePic">
-    <h1>{{ user.username }}</h1>
-    <h2>Your Information:</h2>
-    <table>
-      <tr>
-        <td><strong>Name:</strong></td>
-        <td>{{ user.first_name }} {{ user.last_name }}</td>
-      </tr>
-      <tr>
-        <td><strong>Address:</strong></td>
-        <td>{{ user.street_address }} {{ user.city }} {{ user.state }} {{ user.zip }}</td>
-      </tr>
-      <tr>
-        <td><strong>Gender:</strong></td>
-        <td>{{ user.gender }}</td>
-      </tr>
-    </table>
-    <a routerLink="/{{user.id}}/edit"><button class="waves-effect waves-light btn">Edit user info</button></a>
-    <h2>Your dog(s):</h2>
-    <div *ngFor="let dog of user.dogs">
-      <img src="{{ dog.dog_pic }}" alt="Dog picture"><br>
+    <div>
+      <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture" class="profilePic">
+      <h2>{{ user.username }}</h2>
+      <h3>Your Information:</h3>
       <table>
         <tr>
           <td><strong>Name:</strong></td>
-          <td>{{ dog.dog_name }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
         </tr>
         <tr>
-          <td><strong>Breed:</strong></td>
-          <td>{{ dog.breed }}</td>
+          <td><strong>Address:</strong></td>
+          <td>{{ user.street_address }} {{ user.city }} {{ user.state }} {{ user.zip }}</td>
         </tr>
         <tr>
-          <td><strong>Weight:</strong></td>
-          <td>{{ dog.weight }} lbs</td>
-        </tr>
-        <tr>
-          <td><strong>Sex:</strong></td>
-          <td>{{ dog.sex }}</td>
-        </tr>
-        <tr>
-          <td><strong>Spayed/Neutered:</strong></td>
-          <td>{{ dog.fixed }}</td>
-        </tr>
-        <tr>
-          <td><strong>Age:</strong></td>
-          <td>{{ dog.age_number }} {{ dog.age_unit }}</td>
-        </tr>
-        <tr>
-          <td><strong>Play Style(s):</strong></td>
-          <td>{{ dog.play_style }}</td>
-        </tr>
-        <tr>
-          <td><strong>Play Notes:</strong></td>
-          <td>{{ dog.play_notes }}</td>
-        </tr>
-        <tr>
-          <td><strong>Fence Required:</strong></td>
-          <td>{{ dog.fence_required }}</td>
-        </tr>
-        <tr>
-          <td><strong>Health Issues:</strong></td>
-          <td>{{ dog.health_issues }}</td>
-        </tr>
-        <tr>
-          <td><strong>Health Notes:</strong></td>
-          <td>{{ dog.health_notes }}</td>
-        </tr>
-        <tr>
-          <td><strong>Bio:</strong></td>
-          <td>{{ dog.bio }}</td>
+          <td><strong>Gender:</strong></td>
+          <td>{{ user.gender }}</td>
         </tr>
       </table>
-      <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button class="waves-effect waves-light btn">Edit dog info</button></a>
+      <a routerLink="/{{user.id}}/edit"><button class="waves-effect waves-light btn">Edit user info</button></a>
+      <button (click)="deleteUser()" class="waves-effect waves-light btn red">Delete Account</button>
+    </div>
+    <hr>
+    <div>
+      <h3>Your dog(s):</h3>
+      <div *ngFor="let dog of user.dogs">
+        <img src="{{ dog.dog_pic }}" alt="Dog picture"><br>
+        <table>
+          <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ dog.dog_name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Breed:</strong></td>
+            <td>{{ dog.breed }}</td>
+          </tr>
+          <tr>
+            <td><strong>Weight:</strong></td>
+            <td>{{ dog.weight }} lbs</td>
+          </tr>
+          <tr>
+            <td><strong>Sex:</strong></td>
+            <td>{{ dog.sex }}</td>
+          </tr>
+          <tr>
+            <td><strong>Spayed/Neutered:</strong></td>
+            <td>{{ dog.fixed }}</td>
+          </tr>
+          <tr>
+            <td><strong>Age:</strong></td>
+            <td>{{ dog.age_number }} {{ dog.age_unit }}</td>
+          </tr>
+          <tr>
+            <td><strong>Play Style(s):</strong></td>
+            <td>{{ dog.play_style }}</td>
+          </tr>
+          <tr>
+            <td><strong>Play Notes:</strong></td>
+            <td>{{ dog.play_notes }}</td>
+          </tr>
+          <tr>
+            <td><strong>Fence Required:</strong></td>
+            <td>{{ dog.fence_required }}</td>
+          </tr>
+          <tr>
+            <td><strong>Health Issues:</strong></td>
+            <td>{{ dog.health_issues }}</td>
+          </tr>
+          <tr>
+            <td><strong>Health Notes:</strong></td>
+            <td>{{ dog.health_notes }}</td>
+          </tr>
+          <tr>
+            <td><strong>Bio:</strong></td>
+            <td>{{ dog.bio }}</td>
+          </tr>
+        </table>
+        <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button class="waves-effect waves-light btn">Edit dog info</button></a>
+        <button class="waves-effect waves-light btn red">Remove Dog</button>
+      </div>
     </div>
   </div>
 </div>

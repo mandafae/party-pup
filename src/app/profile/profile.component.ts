@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { User } from '../user';
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private location: Location
   ) { }
@@ -32,8 +32,9 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
   }
 
-  goBack(): void {
-    this.location.back();
+  deleteUser() {
+    this.userService.deleteUser(this.userState.id);
+    this.router.navigate(['']);
   }
 
 }

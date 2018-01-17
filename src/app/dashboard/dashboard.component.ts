@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Dog } from '../dog';
@@ -17,7 +16,6 @@ export class DashboardComponent implements OnInit {
   userState: User;
 
   constructor(
-    private route: ActivatedRoute,
     private dogsService: DogsService,
     private userService: UserService,
     private location: Location
