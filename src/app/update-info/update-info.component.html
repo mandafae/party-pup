@@ -62,11 +62,11 @@
       </select>
       <input type="text" placeholder="Zip Code" pattern="[0-9]{5}" [ngModel]="userState?.zip" name="zip">
       <span>Your address will not be shared with other Party Pup users.</span>
-      <input type="radio" class="with-gap" name="gender" id="male" value="male" [ngModel]="gender">
+      <input type="radio" class="with-gap" name="gender" id="male" value="male" [(ngModel)]="gender">
       <label for="male">Male</label>
-      <input type="radio" class="with-gap" name="gender" id="female" value="female" [ngModel]="gender">
+      <input type="radio" class="with-gap" name="gender" id="female" value="female" [(ngModel)]="gender">
       <label for="female">Female</label>
-      <input type="radio" class="with-gap" name="gender" id="other" value="other" [ngModel]="gender">
+      <input type="radio" class="with-gap" name="gender" id="other" value="other" [(ngModel)]="gender">
       <label for="other">Other</label>
       <input type="submit" class="waves-effect waves-light btn">
     </form>
