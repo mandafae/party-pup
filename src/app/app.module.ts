@@ -32,6 +32,10 @@ let config = new AuthServiceConfig([
   }
 ]);
 
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,10 +56,15 @@ let config = new AuthServiceConfig([
     HttpModule,
     AuthModule,
     MaterializeModule,
-    SocialLoginModule.initialize(config),
+    SocialLoginModule,
     AppRoutingModule
   ],
-  providers: [ UserService, DogsService ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    },
+    UserService, DogsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
