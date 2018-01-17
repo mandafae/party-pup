@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Party Pup';
+  user: any;
+
+  userEmitter(user: any) {
+    this.user = user;
+  }
+
+  ngAfterViewChecked() {
+    //console.log("APP LEVEL USER:", this.user)
+  }
 }

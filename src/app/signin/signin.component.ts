@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { UserService } from '../user.service';
 })
 export class SigninComponent implements OnInit {
   user: any;
+  @Output() userEmitter = new EventEmitter<any>();
 
   constructor(
     private http: HttpClient,
@@ -27,11 +28,10 @@ export class SigninComponent implements OnInit {
     ) { }
 
   signIn(formData) {
-    console.log('SIGN IN FUNCTION!');
     console.log(formData);
-    this.http.post('auth/login', formData)
-      .subscribe((data) => {
+    this.http.post('auth/login', formData).subscribe((data) => {
         this.user = data;
+        this.userEmitter.emit(this.user);
         this.router.navigate([`${this.user.id}/dashboard`])
       });
   }
@@ -46,6 +46,7 @@ export class SigninComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.userService.FBgetUser(user).subscribe((user) => {
         this.user = user;
+        this.userEmitter.emit(this.user);
         console.log("FB SIGN IN USER:", this.user)
         this.router.navigate([`${this.user.id}/dashboard`])
       });
