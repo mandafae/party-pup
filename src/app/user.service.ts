@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -15,6 +16,12 @@ export class UserService {
 
   user: User;
   private usersUrl = 'api/users';
+  private userState = new BehaviorSubject<User>(null);
+  currentUser = this.userState.asObservable();
+
+  setState(user: any) {
+    this.userState.next(user);
+  }
 
   // postUser (user: User): Observable<User> {
   //   return this.http.post<User>(this.usersUrl, user, httpOptions)

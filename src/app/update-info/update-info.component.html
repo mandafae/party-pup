@@ -3,10 +3,10 @@
   <div class="card">
     <h3>Update Personal Information</h3>
     <form>
-      <input type="text" id="firstname" placeholder="First Name">
-      <input type="text" id="lastname" placeholder="Last Name">
-      <input type="text" id="address" placeholder="Street Address">
-      <input type="text" id="city" placeholder="City">
+      <input type="text" id="firstname" placeholder="First Name" value="{{ userState?.first_name }}">
+      <input type="text" id="lastname" placeholder="Last Name" value="{{ userState?.last_name }}">
+      <input type="text" id="address" placeholder="Street Address" value="{{ userState?.street_address }}">
+      <input type="text" id="city" placeholder="City" value="{{ userState?.city }}">
       <select>
       	<option value="AL">Alabama</option>
       	<option value="AK">Alaska</option>
@@ -60,7 +60,7 @@
       	<option value="WI">Wisconsin</option>
       	<option value="WY">Wyoming</option>
       </select>
-      <input type="text" placeholder="Zip Code" pattern="[0-9]{5}">
+      <input type="text" placeholder="Zip Code" pattern="[0-9]{5}" value="{{ userState?.zip }}">
       <span>Your address will not be shared with other Party Pup users.</span>
       <input type="radio" class="with-gap" name="gender" id="male">
       <label for="male">Male</label>

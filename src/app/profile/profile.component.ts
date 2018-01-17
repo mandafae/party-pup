@@ -11,7 +11,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @Input() user: User;
+  userState: any;
+  user: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,14 +21,15 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.userService.currentUser.subscribe((user) => {
+      this.userState = user;
+      this.getUser();
+      console.log("PROFILE USER:", this.user);
+    });
   }
 
-  getUser(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id)
-      .subscribe(user => this.user = user);
-      console.log("PROFILE USER:", this.user);
+  getUser() {
+    this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
   }
 
   goBack(): void {

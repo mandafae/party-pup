@@ -28,7 +28,6 @@ router.post('/facebook/:id', (req, res, next) => {
   .returning('*')
   .where({FB_id: req.params.id})
   .first()
-  .update({user_pic: req.body.photoUrl})
   .then(user => {
     console.log("EXPRESS USER:", user);
     res.json(user)
@@ -41,7 +40,6 @@ router.post('/google/:id', (req, res, next) => {
   .returning('*')
   .where({google_id: req.params.id})
   .first()
-  .update({user_pic: req.body.photoUrl})
   .then(user => {
     console.log("EXPRESS USER:", user);
     res.json(user)

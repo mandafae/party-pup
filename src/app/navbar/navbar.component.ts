@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from "angular4-social-login";
-import { SocialUser } from "angular4-social-login";
+import { Subscription } from 'rxjs/Subscription';
+import { AuthService, SocialUser } from "angular4-social-login";
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -13,9 +13,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input() user: User;
-  private socialUser: SocialUser;
-  private loggedIn: boolean;
+  userState: any;
 
   constructor(
     private authService: AuthService,
@@ -25,23 +23,17 @@ export class NavbarComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.loggedIn = (user != null);
-      this.getUser();
-    });
-  }
-
-  getUser(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id)
-      .subscribe(user => this.user = user);
+  ngOnInit() {
+    this.userService.currentUser.subscribe(user => this.userState = user)
+    console.log("NAVBAR this.userState:", this.userState)
   }
 
   signOut(): void {
     this.authService.signOut();
     this.router.navigate(['']);
+  }
+
+  ngOnDestroy() {
   }
 
 }

@@ -17,8 +17,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  user: any;
-  @Output() userEmitter = new EventEmitter<any>();
+  userState: any;
 
   constructor(
     private http: HttpClient,
@@ -28,11 +27,11 @@ export class SigninComponent implements OnInit {
     ) { }
 
   signIn(formData) {
-    console.log(formData);
-    this.http.post('auth/login', formData).subscribe((data) => {
-        this.user = data;
-        this.userEmitter.emit(this.user);
-        this.router.navigate([`${this.user.id}/dashboard`])
+    this.http.post('auth/login', formData).subscribe((user) => {
+        this.userState = user;
+        console.log("SIGNIN this.userState:", this.userState)
+        this.userService.setState(this.userState);
+        this.router.navigate([`${this.userState.id}/dashboard`])
       });
   }
 
@@ -45,15 +44,16 @@ export class SigninComponent implements OnInit {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
       this.userService.FBgetUser(user).subscribe((user) => {
-        this.user = user;
-        this.userEmitter.emit(this.user);
-        console.log("FB SIGN IN USER:", this.user)
-        this.router.navigate([`${this.user.id}/dashboard`])
+        this.userState = user;
+        this.userService.setState(this.userState);
+        console.log("FB SIGN IN USER:", this.userState)
+        this.router.navigate([`${this.userState.id}/dashboard`])
       });
     });
   }
 
   ngOnInit() {
+    this.userService.currentUser.subscribe(user => this.userState = user)
   }
 
 }

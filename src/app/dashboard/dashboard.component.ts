@@ -14,7 +14,7 @@ import { UserService } from '../user.service';
 })
 export class DashboardComponent implements OnInit {
   dogs: Dog[];
-  @Input() user: User;
+  userState: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,22 +24,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userService.currentUser.subscribe(user => this.userState = user)
     this.getDogs();
-    //this.getUser();
   }
 
   getDogs(): void {
     this.dogsService.getDogs()
       .subscribe(dogs => this.dogs = dogs);
   }
-
-  // getUser(): void {
-  //   const id = +this.route.snapshot.paramMap.get('id');
-  //   this.userService.getUser(id)
-  //     .subscribe(user => {
-  //       this.user = user;
-  //       console.log("DASHBOARD USER:", this.user);
-  //     })
-  // }
 
 }
