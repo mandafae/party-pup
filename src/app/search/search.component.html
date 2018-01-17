@@ -1,66 +1,72 @@
 <app-navbar></app-navbar>
-<div>
-  <h2>Find A Puppy Playmate</h2>
-  <form>
-    <div>
-      <h3>Play Style</h3>
-      <input type="checkbox" id="cushy" value="cushy">
-      <label for="cushy">Cushy</label>
-      <input type="checkbox" id="explorer" value="explorer">
-      <label for="explorer">Explorer</label>
-      <input type="checkbox" id="shy" value="shy">
-      <label for="shy">Shy</label>
-      <input type="checkbox" id="cheerleader" value="cheerleader">
-      <label for="cheerleader">Cheerleader</label>
-      <input type="checkbox" id="speed" value="speed">
-      <label for="speed">Speed Demon</label>
-      <input type="checkbox" id="tag" value="tag">
-      <label for="tag">Tag, You're It!</label>
-      <input type="checkbox" id="wrestler" value="wrestler">
-      <label for="wrestler">Wrestler</label>
-      <input type="checkbox" id="boxer" value="boxer">
-      <label for="boxer">Boxer</label>
-      <input type="checkbox" id="body-slammer" value="body-slammer">
-      <label for="body-slammer">Body Slammer</label>
-    </div>
-    <div>
-      <h3>Weight Range</h3>
-      <input type="checkbox" id="small">
-      <label for="small">Small (under 20lbs)</label>
-      <input type="checkbox" id="medium">
-      <label for="medium">Medium (21lbs - 40lbs)</label>
-      <input type="checkbox" id="large">
-      <label for="large">Large (41lbs - 70lbs)</label>
-      <input type="checkbox" id="giant">
-      <label for="giant">Giant (over 70lbs)</label>
-    </div>
-    <div>
-      <h3>Age Range</h3>
-      <input type="checkbox" id="puppy">
-      <label for="puppy">Puppy (less than 1 year old)</label>
-      <input type="checkbox" id="adult">
-      <label for="adult">Adult (1 - 7 years old)</label>
-      <input type="checkbox" id="senior">
-      <label for="senior">Senior (More than 7 years old)</label>
-    </div>
-    <div>
-      <h3>Dog's Sex</h3>
-      <input type="checkbox" id="dog-male">
-      <label for="dog-male">Male</label>
-      <input type="checkbox" id="dog-female">
-      <label for="dog-female">Female</label>
-      <input type="radio" id="fixed" value="true">
-      <label for="fixed">Required to be spayed/neutered?</label>
-    </div>
-    <div>
-      <h3>Dog Parent's Gender</h3>
-      <input type="radio" name="gender" id="human-male" value="male">
-      <label for="human-male">Male</label>
-      <input type="radio" name="gender" id="human-female" value="female">
-      <label for="human-female">Female</label>
-      <input type="radio" name="gender" id="human-none">
-      <label for="human-none">No Preference</label>
-    </div>
-    <input type="submit">
-  </form>
+<div class="container">
+  <div class="card">
+    <h2>Find A Puppy Playmate</h2>
+    <form>
+      <div>
+        <h3>Play Style</h3>
+        <input type="checkbox" id="cushy" value="cushy">
+        <label for="cushy">Cushy</label>
+        <input type="checkbox" id="explorer" value="explorer">
+        <label for="explorer">Explorer</label>
+        <input type="checkbox" id="shy" value="shy">
+        <label for="shy">Shy</label>
+        <input type="checkbox" id="cheerleader" value="cheerleader">
+        <label for="cheerleader">Cheerleader</label>
+        <input type="checkbox" id="speed" value="speed">
+        <label for="speed">Speed Demon</label>
+        <input type="checkbox" id="tag" value="tag">
+        <label for="tag">Tag, You're It!</label>
+        <input type="checkbox" id="wrestler" value="wrestler">
+        <label for="wrestler">Wrestler</label>
+        <input type="checkbox" id="boxer" value="boxer">
+        <label for="boxer">Boxer</label>
+        <input type="checkbox" id="body-slammer" value="body-slammer">
+        <label for="body-slammer">Body Slammer</label>
+      </div>
+      <hr>
+      <div>
+        <h3>Weight Range</h3>
+        <input type="checkbox" id="small">
+        <label for="small">Small (under 20lbs)</label>
+        <input type="checkbox" id="medium">
+        <label for="medium">Medium (21lbs - 40lbs)</label>
+        <input type="checkbox" id="large">
+        <label for="large">Large (41lbs - 70lbs)</label>
+        <input type="checkbox" id="giant">
+        <label for="giant">Giant (over 70lbs)</label>
+      </div>
+      <hr>
+      <div>
+        <h3>Age Range</h3>
+        <input type="checkbox" id="puppy">
+        <label for="puppy">Puppy (less than 1 year old)</label>
+        <input type="checkbox" id="adult">
+        <label for="adult">Adult (1 - 7 years old)</label>
+        <input type="checkbox" id="senior">
+        <label for="senior">Senior (More than 7 years old)</label>
+      </div>
+      <hr>
+      <div>
+        <h3>Dog's Sex</h3>
+        <input type="checkbox" id="dog-male">
+        <label for="dog-male">Male</label>
+        <input type="checkbox" id="dog-female">
+        <label for="dog-female">Female</label>
+        <input type="radio" class="with-gap" id="fixed" value="true">
+        <label for="fixed">Required to be spayed/neutered?</label>
+      </div>
+      <hr>
+      <div>
+        <h3>Dog Parent's Gender</h3>
+        <input type="radio" class="with-gap" name="gender" id="human-male" value="male">
+        <label for="human-male">Male</label>
+        <input type="radio" class="with-gap" name="gender" id="human-female" value="female">
+        <label for="human-female">Female</label>
+        <input type="radio" class="with-gap" name="gender" id="human-none">
+        <label for="human-none">No Preference</label>
+      </div>
+      <input type="submit" class="waves-effect waves-light btn">
+    </form>
+  </div>
 </div>

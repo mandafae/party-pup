@@ -6,7 +6,7 @@ const knex = require('../db/knex');
 // // User profile
 router.get('/:user_id', (req, res, next) => {
   knex('dogs')
-  .returning('id', 'username', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip', 'gender', 'user_pic')
+  .select('id', 'username', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip', 'gender', 'user_pic')
   .where({owner_id: req.params.user_id})
   .then(dogs => {
     knex('users')

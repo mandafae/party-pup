@@ -18,7 +18,7 @@
         <td>{{ user.gender }}</td>
       </tr>
     </table>
-    <a routerLink="/{{user.id}}/edit"><button>Edit user info</button></a>
+    <a routerLink="/{{user.id}}/edit"><button class="waves-effect waves-light btn">Edit user info</button></a>
     <h2>Your dog(s):</h2>
     <div *ngFor="let dog of user.dogs">
       <img src="{{ dog.dog_pic }}" alt="Dog picture"><br>
@@ -72,7 +72,7 @@
           <td>{{ dog.bio }}</td>
         </tr>
       </table>
-      <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button>Edit dog info</button></a>
+      <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button class="waves-effect waves-light btn">Edit dog info</button></a>
     </div>
   </div>
 </div>
