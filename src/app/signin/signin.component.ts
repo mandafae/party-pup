@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private authService: AuthService,
     private userService: UserService
     ) { }
@@ -30,7 +32,7 @@ export class SigninComponent implements OnInit {
     this.http.post('auth/login', formData)
       .subscribe((data) => {
         this.user = data;
-        location.pathname = `${this.user.id}/dashboard`
+        this.router.navigate([`${this.user.id}/dashboard`])
       });
   }
 
@@ -42,15 +44,12 @@ export class SigninComponent implements OnInit {
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
-      this.userService.FBgetUser(user)
-        .subscribe(user => this.user = user);
+      this.userService.FBgetUser(user).subscribe((user) => {
+        this.user = user;
         console.log("FB SIGN IN USER:", this.user)
-        location.pathname = `${this.user.id}/dashboard`;
+        this.router.navigate([`${this.user.id}/dashboard`])
+      });
     });
-  }
-
-  signOut(): void {
-    this.authService.signOut();
   }
 
   ngOnInit() {

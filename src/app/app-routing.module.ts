@@ -8,6 +8,7 @@ import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { UpdateDogComponent } from './update-dog/update-dog.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: ':id/dashboard', component: DashboardComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: ':id/profile', component: ProfileComponent },
   { path: ':id/edit', component: UpdateInfoComponent },
   { path: ':id/dogs/:dog_id/edit', component: UpdateDogComponent },
-  { path: '', component: SigninComponent }
+  { path: '', component: SigninComponent },
+  { path:'**', component: NotFoundComponent }
 ]
 
 @NgModule({

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const passport = require('passport')
 
 // // GET users/:user_id
 // // User profile

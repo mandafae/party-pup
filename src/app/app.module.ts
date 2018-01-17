@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
 
 import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
@@ -19,6 +18,7 @@ import { UserService } from './user.service';
 import { DogsService } from './dogs.service';
 import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { SigninComponent } from './signin/signin.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 let config = new AuthServiceConfig([
   {
@@ -41,16 +41,17 @@ let config = new AuthServiceConfig([
     ProfileComponent,
     DashboardComponent,
     DogDetailComponent,
-    SigninComponent
+    SigninComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     HttpModule,
     AuthModule,
-    SocialLoginModule.initialize(config)
+    SocialLoginModule.initialize(config),
+    AppRoutingModule
   ],
   providers: [ UserService, DogsService ],
   bootstrap: [AppComponent]

@@ -7,7 +7,6 @@ const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const methodOverride = require('express-method-override');
-const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session')
@@ -24,10 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
-//set up sessions/PassportJS
+//set up sessions
 app.use(session({ secret: process.env.SECRET_KEY }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 //set up morgan
 app.use(morgan('dev'));

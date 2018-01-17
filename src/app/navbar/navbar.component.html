@@ -1,7 +1,7 @@
-<nav *ngIf="loggedIn">
-  <a routerLink="/{{ user.id }}/dashboard" routerLinkActive="active"><button>Dashboard</button></a>
-  <a routerLink="/search" routerLinkActive="active"><button>Search</button></a>
-  <a routerLink="/{{ user.id }}/inbox" routerLinkActive="active"><button>Messages</button></a>
-  <a routerLink="/{{ user.id }}/profile" routerLinkActive="active"><button>Profile</button></a>
+<nav class="deep-purple" *ngIf="loggedIn">
+  <button routerLink="/{{ user.id }}/dashboard" routerLinkActive="active">Dashboard</button>
+  <button routerLink="/search" routerLinkActive="active">Search</button>
+  <button routerLink="/{{ user.id }}/inbox" routerLinkActive="active">Messages</button>
+  <button routerLink="/{{ user.id }}/profile" routerLinkActive="active">Profile</button>
   <button (click)=signOut()>Sign Out</button>
 </nav>

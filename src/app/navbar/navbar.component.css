@@ -1,6 +1,9 @@
 nav {
-  text-align: right;
-  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 16pt;
+  height: 60px;
 }
 
 button {
@@ -8,12 +11,17 @@ button {
   background: none;
   box-shadow:none;
   border-radius: 0px;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: #311b92;
 }
 
-button:active {
-
+.active {
+  background-color: #b39ddb;
 }

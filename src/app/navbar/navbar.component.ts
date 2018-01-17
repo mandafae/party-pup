@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from "angular4-social-login";
 import { SocialUser } from "angular4-social-login";
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -20,15 +20,16 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
     this.authService.authState.subscribe((user) => {
       this.socialUser = user;
       this.loggedIn = (user != null);
+      this.getUser();
     });
   }
 
@@ -40,7 +41,7 @@ export class NavbarComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
-    location.pathname = '';
+    this.router.navigate(['']);
   }
 
 }
