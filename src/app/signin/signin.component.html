@@ -4,7 +4,7 @@
     <img width="250" alt="This pup is ready to party!" src="assets/images/hybrid-481934.jpg">
     <div>
       <span>Sign in/create Party Pup account:</span>
-      <form class="col s12" #form="ngForm" (ngSubmit)="signIn(form.value)">
+      <form class="col s12" #signInForm="ngForm" (ngSubmit)="signIn(signInForm.value)">
         <div class="row">
           <div class="input-field inline col s4">
             <input type="text" placeholder="Username" name="username" [ngModel]="username">

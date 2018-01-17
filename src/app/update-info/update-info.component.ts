@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
@@ -14,12 +14,25 @@ export class UpdateInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private userService: UserService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.currentUser.subscribe(user => this.userState = user)
+    console.log("UPDATE INFO USER:", this.userState);
+  }
+
+  updateInfo(formData) {
+    let id = this.userState.id;
+    formData.id = id;
+    this.userService.editUser(formData).subscribe((user) => {
+      // this.userState = user;
+      // this.userService.setState(this.userState);
+      console.log("USER AFTER UPDATE:", this.userState)
+      this.router.navigate([`${this.userState.id}/profile`])
+    })
   }
 
   goBack(): void {

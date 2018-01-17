@@ -37,7 +37,14 @@ export class SigninComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    //location.pathname = '4/dashboard';
+    this.authService.authState.subscribe((user) => {
+      this.userService.googleGetUser(user).subscribe((user) => {
+        this.userState = user;
+        this.userService.setState(this.userState);
+        console.log("GOOGLE SIGN IN USER:", this.userState)
+        this.router.navigate([`${this.userState.id}/dashboard`])
+      });
+    });
   }
 
   signInWithFB(): void {

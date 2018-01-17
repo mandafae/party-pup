@@ -5,15 +5,18 @@ const knex = require('../db/knex');
 // // GET users/:user_id
 // // User profile
 router.get('/:user_id', (req, res, next) => {
+  console.log("PROFILE ROUTE");
   knex('dogs')
-  .select('id', 'username', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip', 'gender', 'user_pic')
+  .select('*')
   .where({owner_id: req.params.user_id})
   .then(dogs => {
     knex('users')
+    .select('id', 'username', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip', 'gender', 'user_pic')
     .where({'users.id': req.params.user_id})
     .first()
     .then(user => {
       user.dogs = dogs;
+      console.log("EXPRESS USER:", user);
       res.json(user);
     })
   })
@@ -31,12 +34,17 @@ router.post('/', (req, res, next) => {
 // PATCH users/:user_id
 // Update user info
 router.patch('/:user_id', (req, res, next) => {
+  console.log("IN PATCH ROUTE!!");
+  console.log("req.body:", req.body);
   knex('users')
   .where({id: req.params.user_id})
   .first()
   .update(req.body)
   .returning('*')
-  .then(user => res.json(user));
+  .then(user => {
+    console.log("UPDATED EXPRESS USER:", user);
+    res.json(user)
+  })
 });
 
 // DELETE users/:user_id

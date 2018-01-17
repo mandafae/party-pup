@@ -42,10 +42,17 @@ export class UserService {
       );
   }
 
-  // editUser (user: User): Observable<any> {
-  //   const url = `${this.usersUrl}/${id}`
-  //   return this.http.patch(url, user, httpOptions)
-  // }
+  googleGetUser(user: any): Observable<User> {
+    return this.http.post<User>(`auth/google/${user.id}`, user, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('googleGetUser'))
+      );
+  }
+
+  editUser (user: any): Observable<User> {
+    const url = `${this.usersUrl}/${user.id}`
+    return this.http.patch<User>(url, user, httpOptions)
+  }
   //
   // deleteUser (id: number): Observable<User> {
   //   const url = `${this.usersUrl}/${id}`

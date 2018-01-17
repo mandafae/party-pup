@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import { MaterializeModule } from "angular2-materialize";
 
 import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ let config = new AuthServiceConfig([
     HttpClientModule,
     HttpModule,
     AuthModule,
+    MaterializeModule,
     SocialLoginModule.initialize(config),
     AppRoutingModule
   ],
