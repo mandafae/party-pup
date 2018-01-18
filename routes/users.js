@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt-as-promised');
 const knex = require('../db/knex');
 
 // // GET users/:user_id
@@ -19,16 +20,27 @@ router.get('/:user_id', (req, res, next) => {
       console.log("EXPRESS USER:", user);
       res.json(user);
     })
+  }).catch((err) => {
+    next(err);
   })
 })
 
 // POST users
 // Create new user
 router.post('/', (req, res, next) => {
-  knex('users')
-  .returning('*')
-  .insert(req.body)
-  .then(user => res.json(user));
+  console.log("REQ.BODY:", req.body);
+  bcrypt.hash(req.body.password, 12)
+  .then(hash => {
+    console.log(req.body.username);
+    console.log("HASH:", hash)
+    knex('users')
+    .returning('*')
+    .insert({username: req.body.username, hash: hash})
+    .then(user => {
+      console.log(user);
+      res.json(user);
+    })
+  });
 });
 
 // PATCH users/:user_id

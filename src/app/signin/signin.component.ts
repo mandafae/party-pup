@@ -35,6 +35,15 @@ export class SigninComponent implements OnInit {
       });
   }
 
+  signUp(formData) {
+    this.userService.postUser(formData).subscribe((user) => {
+        this.userState = user;
+        console.log("SIGN UP this.userState:", this.userState)
+        this.userService.setState(this.userState);
+        this.router.navigate([`${this.userState.id}/profile`])
+      });
+  }
+
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {

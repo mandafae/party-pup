@@ -23,9 +23,9 @@ export class UserService {
     this.userState.next(user);
   }
 
-  // postUser (user: User): Observable<User> {
-  //   return this.http.post<User>(this.usersUrl, user, httpOptions)
-  // }
+  postUser (user: any): Observable<User> {
+    return this.http.post<User>(this.usersUrl, user, httpOptions)
+  }
 
   getUser (id: number): Observable<User> {
     const url = `${this.usersUrl}/${id}`

@@ -23,13 +23,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
-      this.getUser();
-      console.log("PROFILE USER:", this.user);
     });
+    this.getUser();
+    console.log("PROFILE USER:", this.user);
   }
 
-  getUser() {
-    this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
+  async getUser() {
+    await this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
   }
 
   deleteUser() {
