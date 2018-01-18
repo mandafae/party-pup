@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
 import { DogsService } from '../dogs.service';
@@ -14,6 +15,7 @@ export class AddDogComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private location: Location,
     private dogsService: DogsService,
     private userService: UserService
   ) { }
@@ -35,6 +37,10 @@ export class AddDogComponent implements OnInit {
     this.dogsService.postDog(formData).subscribe((dog) => {
       this.router.navigate([`${this.userState.id}/profile`])
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
