@@ -4,46 +4,48 @@
     <form #updateDogInfoForm="ngForm" (ngSubmit)="updateDogInfo(updateDogInfoForm.value)">
       <h3>Edit {{ currentDog.dog_name }}'s Details</h3>
       <input type="text" name="dog_name" placeholder="Name" [ngModel]="currentDog.dog_name">
-      <input type="radio" class="with-gap" name="sex" id="male" value="male" ngModel>
+      <input type="radio" class="with-gap" name="sex" id="male" value="male" [ngModel]="currentDog.sex">
       <label for="male">Male</label>
-      <input type="radio" class="with-gap" name="sex" id="female" value="female" ngModel>
+      <input type="radio" class="with-gap" name="sex" id="female" value="female" [ngModel]="currentDog.sex">
       <label for="female">Female</label>
       <span>Spayed/neutered?</span>
-      <input type="checkbox" name="fixed" id="fixed" value="true" ngModel>
+      <input type="checkbox" name="fixed" id="fixed" value="true" [ngModel]="currentDog.fixed">
       <label for="fixed">Yes</label>
       <input type="number" name="weight" placeholder="Weight (in lbs)" [ngModel]="currentDog.weight">
       <input type="text" name="breed" placeholder="Breed" [ngModel]="currentDog.breed">
       <input type="number" name="age_number" placeholder="Age" [ngModel]="currentDog.age_number">
-      <select materialize="material_select" name="age_unit" ngModel>
+      <select materialize="material_select" name="age_unit" [ngModel]="currentDog.age_unit">
         <option value="years">years</option>
         <option value="months">months</option>
         <option value="weeks">weeks</option>
       </select>
-      <h4>Play Style(s):</h4>
-        <input type="checkbox" name="play_style" id="cushy" value="cushy" ngModel>
-        <label for="cushy">Cushy</label>
-        <input type="checkbox" name="play_style" id="explorer" value="explorer" ngModel>
-        <label for="explorer">Explorer</label>
-        <input type="checkbox" name="play_style" id="shy" value="shy" ngModel>
-        <label for="shy">Shy</label>
-        <input type="checkbox" name="play_style" id="cheerleader" value="cheerleader" ngModel>
-        <label for="cheerleader">Cheerleader</label>
-        <input type="checkbox" name="play_style" id="speed" value="speed" ngModel>
-        <label for="speed">Speed Demon</label>
-        <input type="checkbox" name="play_style" id="tag" value="tag" ngModel>
-        <label for="tag">Tag, You're It!</label>
-        <input type="checkbox" name="play_style" id="wrestler" value="wrestler" ngModel>
-        <label for="wrestler">Wrestler</label>
-        <input type="checkbox" name="play_style" id="boxer" value="boxer" ngModel>
-        <label for="boxer">Boxer</label>
-        <input type="checkbox" name="play_style" id="body-slammer" value="body-slammer" ngModel>
-        <label for="body-slammer">Body Slammer</label>
+      <fieldset ngModelGroup="play_style">
+        <h4>Play Style(s):</h4>
+          <input type="checkbox" name="cushy" id="cushy" value="true" [ngModel]=currentDog.play_style.cushy>
+          <label for="cushy">Cushy</label>
+          <input type="checkbox" name="explorer" id="explorer" value="true" [ngModel]=currentDog.play_style.explorer>
+          <label for="explorer">Explorer</label>
+          <input type="checkbox" name="shy" id="shy" value="shy" [ngModel]=currentDog.play_style.shy>
+          <label for="shy">Shy</label>
+          <input type="checkbox" name="cheerleader" id="cheerleader" value="cheerleader" [ngModel]=currentDog.play_style.cheerleader>
+          <label for="cheerleader">Cheerleader</label>
+          <input type="checkbox" name="speed" id="speed" value="speed" [ngModel]=currentDog.play_style.speed>
+          <label for="speed">Speed Demon</label>
+          <input type="checkbox" name="tag" id="tag" value="tag" [ngModel]=currentDog.play_style.tag>
+          <label for="tag">Tag, You're It!</label>
+          <input type="checkbox" name="wrestler" id="wrestler" value="wrestler" [ngModel]=currentDog.play_style.wrestler>
+          <label for="wrestler">Wrestler</label>
+          <input type="checkbox" name="boxer" id="boxer" value="boxer" [ngModel]=currentDog.play_style.boxer>
+          <label for="boxer">Boxer</label>
+          <input type="checkbox" name="body_slammer" id="body-slammer" value="body_slammer" [ngModel]=currentDog.play_style.body_slammer>
+          <label for="body-slammer">Body Slammer</label>
+        </fieldset>
         <textarea name="play_notes" id="play-notes" placeholder="Notes" [ngModel]="currentDog.play_notes"></textarea>
       <span>Fenced in areas required?</span>
-      <input type="checkbox" name="fence_required" id="fence" value="true" ngModel>
+      <input type="checkbox" name="fence_required" id="fence" value="true" [ngModel]="currentDog.fence_required">
       <label for="fence">Yes</label>
       <span>Any health issues we should know about?</span>
-      <input type="checkbox" name="health_issues" id="health" value="true" ngModel>
+      <input type="checkbox" name="health_issues" id="health" value="true" [ngModel]="currentDog.health_issues">
       <label for="health">Yes</label>
       <textarea name="play_notes" id="health-notes" placeholder="e.g., seizures, arthritis, etc" [ngModel]="currentDog.health_notes"></textarea>
       <textarea name="bio" id="bio" placeholder="Tell us about your pup!" [ngModel]="currentDog.bio"></textarea>

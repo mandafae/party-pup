@@ -12,7 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  dogs: Dog[];
+  dogs: any;
   userState: User;
 
   constructor(
@@ -28,7 +28,12 @@ export class DashboardComponent implements OnInit {
 
   getDogs(): void {
     this.dogsService.getDogs()
-      .subscribe(dogs => this.dogs = dogs);
+      .subscribe(dogs => {
+        this.dogs = dogs
+        this.dogs.forEach(dog => {
+          dog.play_style = JSON.parse(dog.play_style);
+        });
+      });
   }
 
 }

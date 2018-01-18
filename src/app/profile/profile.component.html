@@ -54,7 +54,16 @@
           </tr>
           <tr>
             <td><strong>Play Style(s):</strong></td>
-            <td>{{ dog.play_style }}</td>
+            <td>| <span *ngIf="dog.play_style.body_slammer">Body Slammer | </span>
+                <span *ngIf="dog.play_style.boxer">Boxer | </span>
+                <span *ngIf="dog.play_style.cheerleader">Cheerleader | </span>
+                <span *ngIf="dog.play_style.cushy">Cushy | </span>
+                <span *ngIf="dog.play_style.explorer">Explorer | </span>
+                <span *ngIf="dog.play_style.shy">Shy | </span>
+                <span *ngIf="dog.play_style.speed">Speed Demon | </span>
+                <span *ngIf="dog.play_style.tag">Tag, You're It! | </span>
+                <span *ngIf="dog.play_style.wrestler">Wrestler | </span>
+            </td>
           </tr>
           <tr>
             <td><strong>Play Notes:</strong></td>

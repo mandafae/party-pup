@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -27,6 +28,12 @@ export class ProfileComponent implements OnInit {
       this.userState = user;
     });
     this.getUser();
+  }
+
+  ngAfterContentChecked() {
+    this.user.dogs.forEach(dog => {
+      dog.play_style = JSON.parse(dog.play_style);
+    });
     console.log("PROFILE USER:", this.user);
   }
 

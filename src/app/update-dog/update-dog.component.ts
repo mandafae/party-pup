@@ -13,7 +13,6 @@ import { DogsService } from '../dogs.service';
 export class UpdateDogComponent implements OnInit {
   userState: any;
   dog_id: any;
-  index: number;
   currentDog: any;
 
   constructor(
@@ -38,6 +37,11 @@ export class UpdateDogComponent implements OnInit {
 
   updateDogInfo(formData) {
     formData.id = this.currentDog.id;
+    formData.fixed = formData.fixed? true : false;
+    formData.play_style = JSON.stringify(formData.play_style);
+    formData.fence_required = formData.fence_required? true : false;
+    formData.health_issues = formData.health_issues? true : false;
+    console.log("UPDATE FORM:", formData)
     this.dogsService.editDog(formData).subscribe((dog) => {
       this.router.navigate([`${this.userState.id}/profile`])
     })
@@ -51,6 +55,8 @@ export class UpdateDogComponent implements OnInit {
     this.currentDog = this.userState.dogs.find((dogs) => {
       return dogs.id == this.dog_id;
     })
+    this.currentDog.play_style = JSON.parse(this.currentDog.play_style);
+    console.log("PLAY STYLE:", this.currentDog.play_style)
   }
 
   goBack(): void {

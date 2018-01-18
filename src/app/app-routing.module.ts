@@ -7,13 +7,14 @@ import { SearchComponent } from './search/search.component';
 import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
+import { AddDogComponent } from './add-dog/add-dog.component';
 import { UpdateDogComponent } from './update-dog/update-dog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: ':id/dashboard', component: DashboardComponent },
   { path: 'search', component: SearchComponent },
-  { path: ':id/dogs/new', component: UpdateDogComponent },
+  { path: ':id/dogs/new', component: AddDogComponent },
   { path: ':owner_id/dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/profile', component: ProfileComponent },
   { path: ':id/edit', component: UpdateInfoComponent },

@@ -16,11 +16,15 @@ export class DogsService {
   private usersUrl = 'api/users';
   private dogsUrl = 'api/dogs';
 
+  postDog (dog: any): Observable<Dog> {
+    return this.http.post<Dog>(this.dogsUrl, dog, httpOptions)
+  }
+
   getDogs (): Observable<Dog[]> {
     return this.http.get<Dog[]>(this.dogsUrl)
-      .pipe(
-        catchError(this.handleError('getUser', []))
-      );
+      // .pipe(
+      //   catchError(this.handleError('getUser', []))
+      // );
   }
 
   getDog (owner_id: number, dog_id: number): Observable<Dog> {

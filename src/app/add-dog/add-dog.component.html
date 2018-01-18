@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="card">
+    <form #addDogForm="ngForm" (ngSubmit)="addDog(addDogForm.value)">
+      <h3>Add a New Dog</h3>
+      <input type="text" name="dog_name" placeholder="Name" ngModel>
+      <input type="radio" class="with-gap" name="sex" id="male" value="male" ngModel>
+      <label for="male">Male</label>
+      <input type="radio" class="with-gap" name="sex" id="female" value="female" ngModel>
+      <label for="female">Female</label>
+      <span>Spayed/neutered?</span>
+      <input type="checkbox" name="fixed" id="fixed" value="true" ngModel>
+      <label for="fixed">Yes</label>
+      <input type="number" name="weight" placeholder="Weight (in lbs)" ngModel>
+      <input type="text" name="breed" placeholder="Breed" ngModel>
+      <input type="number" name="age_number" placeholder="Age" ngModel>
+      <select materialize="material_select" name="age_unit" ngModel>
+        <option value="years">years</option>
+        <option value="months">months</option>
+        <option value="weeks">weeks</option>
+      </select>
+      <h4>Play Style(s):</h4>
+        <input type="checkbox" name="play_style" id="cushy" value="cushy" ngModel>
+        <label for="cushy">Cushy</label>
+        <input type="checkbox" name="play_style" id="explorer" value="explorer" ngModel>
+        <label for="explorer">Explorer</label>
+        <input type="checkbox" name="play_style" id="shy" value="shy" ngModel>
+        <label for="shy">Shy</label>
+        <input type="checkbox" name="play_style" id="cheerleader" value="cheerleader" ngModel>
+        <label for="cheerleader">Cheerleader</label>
+        <input type="checkbox" name="play_style" id="speed" value="speed" ngModel>
+        <label for="speed">Speed Demon</label>
+        <input type="checkbox" name="play_style" id="tag" value="tag" ngModel>
+        <label for="tag">Tag, You're It!</label>
+        <input type="checkbox" name="play_style" id="wrestler" value="wrestler" ngModel>
+        <label for="wrestler">Wrestler</label>
+        <input type="checkbox" name="play_style" id="boxer" value="boxer" ngModel>
+        <label for="boxer">Boxer</label>
+        <input type="checkbox" name="play_style" id="body-slammer" value="body_slammer" ngModel>
+        <label for="body-slammer">Body Slammer</label>
+        <textarea name="play_notes" id="play-notes" placeholder="Notes" ngModel></textarea>
+      <span>Fenced in areas required?</span>
+      <input type="checkbox" name="fence_required" id="fence" value="true" ngModel>
+      <label for="fence">Yes</label>
+      <span>Any health issues we should know about?</span>
+      <input type="checkbox" name="health_issues" id="health" value="true" ngModel>
+      <label for="health">Yes</label>
+      <textarea name="health_notes" id="health-notes" placeholder="e.g., seizures, arthritis, etc" ngModel></textarea>
+      <textarea name="bio" id="bio" placeholder="Tell us about your pup!" ngModel></textarea>
+      <span>Will add photo upload later</span>
+      <input type="submit" class="waves-effect waves-light btn">
+    </form>
+    <button class="waves-effect waves-light btn" (click)="goBack()">Cancel</button>
+  </div>
+</div>

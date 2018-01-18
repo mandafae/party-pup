@@ -13,10 +13,15 @@ router.get('/', (req, res, next) => {
 // POST dogs
 // Add a new dog
 router.post('/', (req, res, next) => {
+  console.log("DOGS POST ROUTE");
+  console.log("REQ.BODY:", req.body);
   knex('dogs')
   .returning('*')
   .insert(req.body)
-  .then(dog => res.json(dog));
+  .then(dog => {
+    console.log(dog)
+    res.json(dog)
+  });
 });
 
 // PATCH dogs/:dog_id
