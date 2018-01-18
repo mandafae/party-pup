@@ -6,7 +6,6 @@ exports.up = function(knex, Promise) {
     table.integer('receiver_id').notNullable();
     table.string('message').notNullable();
     table.string('created_at').notNullable();
-    table.string('updated_at').notNullable();
   })
 };
 

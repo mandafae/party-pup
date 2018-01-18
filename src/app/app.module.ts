@@ -21,6 +21,7 @@ import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { SigninComponent } from './signin/signin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddDogComponent } from './add-dog/add-dog.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 let config = new AuthServiceConfig([
   {
@@ -49,7 +50,8 @@ export function provideConfig() {
     DogDetailComponent,
     SigninComponent,
     NotFoundComponent,
-    AddDogComponent
+    AddDogComponent,
+    InboxComponent
   ],
   imports: [
     BrowserModule,
