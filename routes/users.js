@@ -37,8 +37,8 @@ router.post('/', (req, res, next) => {
     .returning('*')
     .insert({username: req.body.username, hash: hash})
     .then(user => {
-      console.log(user);
-      res.json(user);
+      console.log(user[0]);
+      res.json(user[0]);
     })
   });
 });

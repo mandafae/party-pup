@@ -30,23 +30,23 @@ export class UserService {
   getUser (id: number): Observable<User> {
     const url = `${this.usersUrl}/${id}`
     return this.http.get<User>(url)
-      .pipe(
-        catchError(this.handleError<User>(`getUser id=${id}`))
-      );
+      // .pipe(
+      //   catchError(this.handleError<User>(`getUser id=${id}`))
+      // );
   }
 
   FBgetUser(user: any): Observable<User> {
     return this.http.post<User>(`auth/facebook/${user.id}`, user, httpOptions)
-      .pipe(
-        catchError(this.handleError<User>('FBgetUser'))
-      );
+      // .pipe(
+      //   catchError(this.handleError<User>('FBgetUser'))
+      // );
   }
 
   googleGetUser(user: any): Observable<User> {
     return this.http.post<User>(`auth/google/${user.id}`, user, httpOptions)
-      .pipe(
-        catchError(this.handleError<User>('googleGetUser'))
-      );
+      // .pipe(
+      //   catchError(this.handleError<User>('googleGetUser'))
+      // );
   }
 
   editUser (user: any): Observable<User> {

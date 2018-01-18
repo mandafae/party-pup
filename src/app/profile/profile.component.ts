@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
     console.log("PROFILE USER:", this.user);
   }
 
-  async getUser() {
-    await this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
+  getUser() {
+    this.userService.getUser(this.userState.id).subscribe(user => this.user = user)
   }
 
   deleteUser() {

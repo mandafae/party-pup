@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+    this.userService.setState(null);
     this.router.navigate(['']);
   }
 
