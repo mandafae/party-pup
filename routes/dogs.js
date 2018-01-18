@@ -22,12 +22,17 @@ router.post('/', (req, res, next) => {
 // PATCH dogs/:dog_id
 // Update dog's info
 router.patch('/:dog_id', (req, res, next) => {
+  console.log("DOGS PATCH ROUTE!");
+  console.log(req.body)
   knex('dogs')
   .where({id: req.params.dog_id})
   .first()
   .update(req.body)
   .returning('*')
-  .then(user => res.json(user));
+  .then(dog => {
+    console.log("UPDATED EXPRESS DOG:", dog);
+    res.json(dog)
+  })
 });
 
 // DELETE dogs/:dog_id
@@ -37,7 +42,7 @@ router.delete('/:dog_id', (req, res, next) => {
   .where({id: req.params.dog_id})
   .first()
   .del()
-  .then(() => res.send('Dog deleted'));
+  .then(() => res.json('Dog deleted'));
 });
 
 module.exports = router;

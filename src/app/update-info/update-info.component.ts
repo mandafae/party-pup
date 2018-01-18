@@ -28,8 +28,8 @@ export class UpdateInfoComponent implements OnInit {
     let id = this.userState.id;
     formData.id = id;
     this.userService.editUser(formData).subscribe((user) => {
-      // this.userState = user;
-      // this.userService.setState(this.userState);
+      this.userState = user;
+      this.userService.setState(this.userState);
       console.log("USER AFTER UPDATE:", this.userState)
       this.router.navigate([`${this.userState.id}/profile`])
     })

@@ -26,9 +26,21 @@ export class DogsService {
   getDog (owner_id: number, dog_id: number): Observable<Dog> {
     const url = `${this.usersUrl}/${owner_id}/dogs/${dog_id}`
     return this.http.get<Dog>(url)
-      .pipe(
-        catchError(this.handleError<Dog>(`getDog id=${dog_id}`))
-      );
+      // .pipe(
+      //   catchError(this.handleError<Dog>(`getDog id=${dog_id}`))
+      // );
+  }
+
+  editDog (dog: any): Observable<any> {
+    const url = `${this.dogsUrl}/${dog.id}`
+    return this.http.patch<any>(url, dog, httpOptions)
+  }
+
+  deleteDog(dog_id) {
+    // console.log("SERVICE FUNCTION FIRED!")
+    // console.log("ID IN SERVICE:", dog_id)
+    const url = `${this.dogsUrl}/${dog_id}`
+    return this.http.delete(url).subscribe(res => console.log(res));
   }
 
   // Error handling

@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: ':id/dashboard', component: DashboardComponent },
   { path: 'search', component: SearchComponent },
+  { path: ':id/dogs/new', component: UpdateDogComponent },
   { path: ':owner_id/dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/profile', component: ProfileComponent },
   { path: ':id/edit', component: UpdateInfoComponent },

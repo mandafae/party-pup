@@ -78,7 +78,10 @@
           </tr>
         </table>
         <a routerLink="/{{user.id}}/dogs/{{dog.id}}/edit"><button class="waves-effect waves-light btn">Edit dog info</button></a>
-        <button class="waves-effect waves-light btn red">Remove Dog</button>
+        <button (click)="deleteDog(dog.id)" class="waves-effect waves-light btn red">Remove Dog</button>
+      </div>
+      <div>
+        <a routerLink="/{{user.id}}/dogs/new"><button class="waves-effect waves-light btn">Add a New Dog</button></a>
       </div>
     </div>
   </div>

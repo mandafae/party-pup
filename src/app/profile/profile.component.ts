@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { DogsService } from '../dogs.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
+    private dogsService: DogsService,
     private location: Location
   ) { }
 
@@ -34,7 +36,14 @@ export class ProfileComponent implements OnInit {
 
   deleteUser() {
     this.userService.deleteUser(this.userState.id);
+    this.userService.setState(null);
     this.router.navigate(['']);
+  }
+
+  deleteDog(dog_id) {
+    this.dogsService.deleteDog(dog_id);
+    this.router.navigate([`${this.userState.id}/profile`]);
+    this.getUser();
   }
 
 }
