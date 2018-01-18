@@ -19,25 +19,27 @@
         <option value="months">months</option>
         <option value="weeks">weeks</option>
       </select>
-      <h4>Play Style(s):</h4>
-        <input type="checkbox" name="play_style" id="cushy" value="cushy" ngModel>
-        <label for="cushy">Cushy</label>
-        <input type="checkbox" name="play_style" id="explorer" value="explorer" ngModel>
-        <label for="explorer">Explorer</label>
-        <input type="checkbox" name="play_style" id="shy" value="shy" ngModel>
-        <label for="shy">Shy</label>
-        <input type="checkbox" name="play_style" id="cheerleader" value="cheerleader" ngModel>
-        <label for="cheerleader">Cheerleader</label>
-        <input type="checkbox" name="play_style" id="speed" value="speed" ngModel>
-        <label for="speed">Speed Demon</label>
-        <input type="checkbox" name="play_style" id="tag" value="tag" ngModel>
-        <label for="tag">Tag, You're It!</label>
-        <input type="checkbox" name="play_style" id="wrestler" value="wrestler" ngModel>
-        <label for="wrestler">Wrestler</label>
-        <input type="checkbox" name="play_style" id="boxer" value="boxer" ngModel>
-        <label for="boxer">Boxer</label>
-        <input type="checkbox" name="play_style" id="body-slammer" value="body_slammer" ngModel>
-        <label for="body-slammer">Body Slammer</label>
+      <fieldset ngModelGroup="play_style">
+        <h4>Play Style(s):</h4>
+          <input type="checkbox" name="cushy" id="cushy" value="cushy" ngModel>
+          <label for="cushy">Cushy</label>
+          <input type="checkbox" name="explorer" id="explorer" value="explorer" ngModel>
+          <label for="explorer">Explorer</label>
+          <input type="checkbox" name="shy" id="shy" value="shy" ngModel>
+          <label for="shy">Shy</label>
+          <input type="checkbox" name="cheerleader" id="cheerleader" value="cheerleader" ngModel>
+          <label for="cheerleader">Cheerleader</label>
+          <input type="checkbox" name="speed" id="speed" value="speed" ngModel>
+          <label for="speed">Speed Demon</label>
+          <input type="checkbox" name="tag" id="tag" value="tag" ngModel>
+          <label for="tag">Tag, You're It!</label>
+          <input type="checkbox" name="wrestler" id="wrestler" value="wrestler" ngModel>
+          <label for="wrestler">Wrestler</label>
+          <input type="checkbox" name="boxer" id="boxer" value="boxer" ngModel>
+          <label for="boxer">Boxer</label>
+          <input type="checkbox" name="body_slammer" id="body-slammer" value="body_slammer" ngModel>
+          <label for="body-slammer">Body Slammer</label>
+        </fieldset>
         <textarea name="play_notes" id="play-notes" placeholder="Notes" ngModel></textarea>
       <span>Fenced in areas required?</span>
       <input type="checkbox" name="fence_required" id="fence" value="true" ngModel>

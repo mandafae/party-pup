@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../user.service';
 import { DogsService } from '../dogs.service';
@@ -12,6 +13,7 @@ export class AddDogComponent implements OnInit {
   userState: any;
 
   constructor(
+    private router: Router,
     private dogsService: DogsService,
     private userService: UserService
   ) { }
@@ -26,12 +28,13 @@ export class AddDogComponent implements OnInit {
   addDog(formData) {
     formData.owner_id = this.userState.id;
     formData.fixed = formData.fixed? true : false;
+    formData.play_style = JSON.stringify(formData.play_style);
     formData.fence_required = formData.fence_required? true : false;
     formData.health_issues = formData.health_issues? true : false;
     console.log(formData)
     this.dogsService.postDog(formData).subscribe((dog) => {
-        console.log(dog)
-      });
+      this.router.navigate([`${this.userState.id}/profile`])
+    });
   }
 
 }
