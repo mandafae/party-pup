@@ -1,5 +1,17 @@
 <div class="container">
   <div class="card">
-    <h1>Inbox!!!</h1>
+    <h3>Inbox</h3>
+    <div>
+      <table>
+        <tr>
+          <th>From</th>
+          <th>Sent</th>
+        </tr>
+        <tr *ngFor="let message of messages">
+          <td><a routerLink="/{{ message.receiver_id }}/messages/{{ message.sender_id }}">{{ message.first_name }} {{ message.last_name }}</a></td>
+          <td>{{ message.created_at | date:'fullDate' }} at {{ message.created_at | date:'shortTime' }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

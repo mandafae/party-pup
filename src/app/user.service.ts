@@ -52,6 +52,16 @@ export class UserService {
     return this.http.delete(url).subscribe(res => console.log(res));
   }
 
+  getMessages(id) {
+    const url = `${this.usersUrl}/${id}/messages`
+    return this.http.get(url)
+  }
+
+  getMessageThread(sender_id, receiver_id) {
+    const url = `${this.usersUrl}/${receiver_id}/messages/${sender_id}`
+    return this.http.get(url)
+  }
+
   // Error handling
   private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {

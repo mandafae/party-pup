@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchComponent } from './search/search.component';
 import { DogDetailComponent } from './dog-detail/dog-detail.component';
 import { InboxComponent } from './inbox/inbox.component';
+import { MessageDetailComponent } from './message-detail/message-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { AddDogComponent } from './add-dog/add-dog.component';
@@ -15,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: ':id/dogs/new', component: AddDogComponent },
+  { path: ':receiver_id/messages/:sender_id', component: MessageDetailComponent },
   { path: ':id/dogs/:dog_id/edit', component: UpdateDogComponent },
   { path: 'dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/dashboard', component: DashboardComponent },

@@ -82,7 +82,29 @@ router.get('/:user_id/dogs', (req, res, next) => {
 // GET users/:user_id/messages
 // All of a user's messages
 router.get('/:user_id/messages', (req, res, next) => {
-  res.send('GET users/:user_id/messages')
+  knex('messages')
+  .join('users', {'users.id': 'messages.sender_id'})
+  .where({receiver_id: req.params.user_id})
+  .then(data => {
+    console.log(data)
+    res.json(data);
+  });
+});
+
+// GET users/:receiver_id/messages/:sender_id
+// A message thread
+router.get('/:receiver_id/messages/:sender_id', (req, res, next) => {
+  console.log("REQ.PARAMS:", req.params)
+  knex('messages')
+  .join('users', {'users.id': 'messages.sender_id'})
+  .where({receiver_id: req.params.receiver_id})
+  .andWhere({sender_id: req.params.sender_id})
+  .orWhere({sender_id: req.params.receiver_id})
+  .orderBy('created_at', 'desc')
+  .then(data => {
+    console.log(data)
+    res.json(data)
+  });
 });
 
 module.exports = router;
