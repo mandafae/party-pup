@@ -7,6 +7,8 @@
 }
 
 .card {
+  background-color: #FFFFFF;
+  opacity: 0.85;
   width: 90%;
   margin: 10px;
   padding: 5px;
@@ -24,4 +26,9 @@
 
 button:hover {
   cursor: pointer;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: #673ab7;
 }

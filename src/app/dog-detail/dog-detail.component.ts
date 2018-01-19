@@ -12,7 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./dog-detail.component.css']
 })
 export class DogDetailComponent implements OnInit {
-  @Input() dog: Dog;
+  dog: any;
   userState: any;
 
   constructor(
@@ -23,15 +23,18 @@ export class DogDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.currentUser.subscribe(user => this.userState = user)
-    this.getDog();
-  }
-
-  getDog(): void {
-    const owner_id = +this.userState.id;
+    // Get user info
+    this.userService.currentUser.subscribe((user) => {
+      this.userState = user;
+      console.log("DETAIL USER:", this.userState);
+    });
+    // Get dog info
     const dog_id = +this.route.snapshot.paramMap.get('dog_id');
-    this.dogsService.getDog(owner_id, dog_id)
-      .subscribe(dog => this.dog = dog);
+    console.log("DOG_ID:", dog_id)
+    this.dogsService.getDog(dog_id).subscribe(dog => {
+        this.dog = dog
+        this.dog.play_style = JSON.parse(this.dog.play_style);
+      });
   }
 
   goBack(): void {

@@ -13,7 +13,6 @@ const httpOptions = {
 @Injectable()
 export class DogsService {
 
-  private usersUrl = 'api/users';
   private dogsUrl = 'api/dogs';
 
   postDog (dog: any): Observable<Dog> {
@@ -22,17 +21,11 @@ export class DogsService {
 
   getDogs (): Observable<Dog[]> {
     return this.http.get<Dog[]>(this.dogsUrl)
-      // .pipe(
-      //   catchError(this.handleError('getUser', []))
-      // );
   }
 
-  getDog (owner_id: number, dog_id: number): Observable<Dog> {
-    const url = `${this.usersUrl}/${owner_id}/dogs/${dog_id}`
+  getDog (dog_id: number): Observable<Dog> {
+    const url = `${this.dogsUrl}/${dog_id}`
     return this.http.get<Dog>(url)
-      // .pipe(
-      //   catchError(this.handleError<Dog>(`getDog id=${dog_id}`))
-      // );
   }
 
   editDog (dog: any): Observable<any> {
@@ -51,7 +44,6 @@ export class DogsService {
   private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
     console.error(error);
-    //this.log(`${operation} failed: ${error.message}`);
     return of(result as T);
   };
 }

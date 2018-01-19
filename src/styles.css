@@ -1,3 +1,7 @@
 body {
+  background-image: url('assets/images/john-price-340033.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -70,19 +70,6 @@ router.delete('/:user_id', (req, res, next) => {
   .then(() => res.json('User deleted'));
 });
 
-// GET users/:user_id/dogs/:dog_id
-// One of a user's dogs
-router.get('/:user_id/dogs/:dog_id', (req, res, next) => {
-  knex('users')
-  .returning('*')
-  .join('dogs', {'dogs.owner_id': 'users.id'})
-  .where({'dogs.id': req.params.dog_id})
-  .first()
-  .then(data => {
-    res.json(data)
-  });
-});
-
 // GET users/:user_id/dogs
 // All of a user's dogs
 router.get('/:user_id/dogs', (req, res, next) => {

@@ -24,6 +24,19 @@ router.post('/', (req, res, next) => {
   });
 });
 
+// GET dogs/:dog_id
+// One of a user's dogs
+router.get('/:dog_id', (req, res, next) => {
+  knex('users')
+  .returning('*')
+  .join('dogs', {'dogs.owner_id': 'users.id'})
+  .where({'dogs.id': req.params.dog_id})
+  .first()
+  .then(data => {
+    res.json(data)
+  });
+});
+
 // PATCH dogs/:dog_id
 // Update dog's info
 router.patch('/:dog_id', (req, res, next) => {
