@@ -32,8 +32,9 @@ router.get('/:dog_id', (req, res, next) => {
   .join('dogs', {'dogs.owner_id': 'users.id'})
   .where({'dogs.id': req.params.dog_id})
   .first()
-  .then(data => {
-    res.json(data)
+  .then(dog => {
+    console.log("DOG:", dog)
+    res.json(dog)
   });
 });
 

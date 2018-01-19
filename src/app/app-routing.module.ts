@@ -15,8 +15,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: ':id/dogs/new', component: AddDogComponent },
-  { path: ':owner_id/dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/dogs/:dog_id/edit', component: UpdateDogComponent },
+  { path: 'dogs/:dog_id', component: DogDetailComponent },
   { path: ':id/dashboard', component: DashboardComponent },
   { path: ':id/inbox', component: InboxComponent },
   { path: ':id/profile', component: ProfileComponent },

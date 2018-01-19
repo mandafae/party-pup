@@ -26,15 +26,18 @@ export class DogDetailComponent implements OnInit {
     // Get user info
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
-      console.log("DETAIL USER:", this.userState);
     });
     // Get dog info
     const dog_id = +this.route.snapshot.paramMap.get('dog_id');
-    console.log("DOG_ID:", dog_id)
     this.dogsService.getDog(dog_id).subscribe(dog => {
         this.dog = dog
         this.dog.play_style = JSON.parse(this.dog.play_style);
       });
+  }
+
+  ngAfterContentChecked() {
+    console.log("DETAIL USER:", this.userState);
+    console.log("DETAIL DOG:", this.dog)
   }
 
   goBack(): void {
