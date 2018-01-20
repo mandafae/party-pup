@@ -2,8 +2,11 @@
   <div class="card">
     <div>
       <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture" class="profilePic">
-      <h2>{{ user.username }}</h2>
-      <h3>Your Information:</h3>
+      <h3 *ngIf="user.firstName">{{ user.first_name }}'s Information:</h3>
+      <h3 *ngIf="!user.firstName">Your Information:</h3>
+      <div *ngIf="!user.gender">
+        <p style="color:red;">Please update your information.</p>
+      </div>
       <table>
         <tr>
           <td><strong>Name:</strong></td>

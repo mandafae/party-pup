@@ -51,7 +51,12 @@ export class SigninComponent implements OnInit {
         this.userState = user;
         this.userService.setState(this.userState);
         console.log("GOOGLE SIGN IN USER:", this.userState)
-        this.router.navigate([`${this.userState.id}/dashboard`])
+        // Handle new users
+        if (!this.userState.gender) {
+          this.router.navigate([`${this.userState.id}/profile`])
+        } else {
+          this.router.navigate([`${this.userState.id}/dashboard`])
+        }
       });
     });
   }
@@ -63,7 +68,12 @@ export class SigninComponent implements OnInit {
         this.userState = user;
         this.userService.setState(this.userState);
         console.log("FB SIGN IN USER:", this.userState)
-        this.router.navigate([`${this.userState.id}/dashboard`])
+        // Handle new users
+        if (!this.userState.gender) {
+          this.router.navigate([`${this.userState.id}/profile`])
+        } else {
+          this.router.navigate([`${this.userState.id}/dashboard`])
+        }
       });
     });
   }

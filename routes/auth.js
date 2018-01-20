@@ -30,8 +30,18 @@ router.post('/facebook/:id', (req, res, next) => {
   .where({FB_id: req.params.id})
   .first()
   .then(user => {
-    console.log("EXPRESS USER:", user);
-    res.json(user)
+    if (!user) {
+      knex('users')
+      .returning('*')
+      .insert({FB_id: req.body.id, first_name: req.body.firstName, last_name: req.body.lastName, user_pic: req.body.photoUrl})
+      .then(user => {
+        console.log("NEW FB USER")
+        res.json(user)
+      })
+    } else {
+      console.log("EXPRESS USER:", user);
+      res.json(user)
+    }
   })
 })
 
@@ -43,8 +53,18 @@ router.post('/google/:id', (req, res, next) => {
   .where({google_id: req.params.id})
   .first()
   .then(user => {
-    console.log("EXPRESS USER:", user);
-    res.json(user)
+    if (!user) {
+      knex('users')
+      .returning('*')
+      .insert({google_id: req.body.id, first_name: req.body.firstName, last_name: req.body.lastName, user_pic: req.body.photoUrl})
+      .then(user => {
+        console.log("NEW GOOGLE USER")
+        res.json(user)
+      })
+    } else {
+      console.log("EXPRESS USER:", user);
+      res.json(user)
+    }
   })
 })
 

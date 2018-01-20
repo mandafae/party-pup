@@ -14,6 +14,8 @@ import { UserService } from '../user.service';
 export class DogDetailComponent implements OnInit {
   dog: any;
   userState: any;
+  showForm: boolean = false;
+  messageSent: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +35,21 @@ export class DogDetailComponent implements OnInit {
         this.dog = dog
         this.dog.play_style = JSON.parse(this.dog.play_style);
       });
+  }
+
+  toggleMessage() {
+    this.showForm = !this.showForm;
+  }
+
+  submitMessage(message) {
+    message.sender_id = this.userState.id;
+    message.receiver_id = this.dog.owner_id;
+    message.created_at = Date.now();
+    console.log(message)
+    this.userService.sendMessage(message).subscribe(message => {
+      this.showForm = !this.showForm;
+      this.messageSent = true;
+    })
   }
 
   ngAfterContentChecked() {

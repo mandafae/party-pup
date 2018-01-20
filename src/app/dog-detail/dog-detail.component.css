@@ -2,6 +2,11 @@ p {
   text-align: left;
 }
 
+textarea {
+  margin-top: 10px;
+  height: 175px;
+}
+
 .container {
   width: 100vw;
   display: flex;
