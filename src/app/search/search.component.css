@@ -2,6 +2,10 @@ p {
   text-align: left;
 }
 
+fieldset {
+  margin: 10px;
+}
+
 .container {
   width: 100vw;
   display: flex;
@@ -17,8 +21,4 @@ p {
   margin: 10px;
   padding: 5px;
   border: 1px #000000 solid;
-}
-
-.profilePic {
-  border-radius: 100%;
 }
