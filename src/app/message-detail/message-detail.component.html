@@ -1,10 +1,17 @@
 <div class="container">
   <div class="card">
     <h3>Messages</h3>
-    <div class="message" [ngClass]="{'sent': message.sender_id == userState.id}"*ngFor="let message of messages">
-      <strong>{{ message.first_name }}:</strong><br>
-      {{ message.message }}<br>
-      Sent {{ message.created_at | date:'fullDate' }} at {{ message.created_at | date:'shortTime' }}
+    <form #messageForm="ngForm" (ngSubmit)="submitMessage(messageForm.value)">
+      <textarea name="message" placeholder="Send a message!" ngModel></textarea>
+      <input type="submit" class="waves-effect waves-light btn" value="Send">
+    </form>
+    <div [ngClass]="{'sent': message.sender_id == userState.id}"*ngFor="let message of messages">
+      <div class="message">
+        <strong>{{ message.first_name }}:</strong><br>
+        {{ message.message }}<br>
+        Sent {{ message.created_at | date:'fullDate' }} at {{ message.created_at | date:'shortTime' }}
+      </div>
     </div>
+    <button class="waves-effect waves-light btn" (click)="goBack()">Go Back</button>
   </div>
 </div>

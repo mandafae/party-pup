@@ -60,6 +60,11 @@ export class UserService {
     return this.http.get(url)
   }
 
+  sendMessage(message) {
+    const url = `${this.usersUrl}/messages`
+    return this.http.post(url, message, httpOptions)
+  }
+
   // Error handling
   private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {

@@ -76,35 +76,28 @@ router.get('/:user_id/dogs', (req, res, next) => {
   knex('dogs')
   .join('users', {'users.id': 'dogs.owner_id'})
   .where({owner_id: req.params.user_id})
-  .then(data => res.json(data));
+  .then(dogs => res.json(dogs));
 });
 
 // GET users/:user_id/messages
 // All of a user's messages
-router.get('/:user_id/messages', (req, res, next) => {
-  knex('messages')
-  .join('users', {'users.id': 'messages.sender_id'})
-  .orderBy('messages.created_at', 'messages.desc')
-  .where({receiver_id: req.params.user_id})
-  .then(data => {
-    console.log(data)
-    res.json(data);
-  });
-});
 // router.get('/:user_id/messages', (req, res, next) => {
-  // knex('messages')
-  // .join('users', {'users.id': 'messages.sender_id'})
-  // .where({receiver_id: req.params.user_id})
-  // .join(
-    // knex('messages')
-    // .groupBy('sender_id')
-    // .orderBy('messages.created_at', 'desc')
-    // )
-//     .then(messages => {
-//       console.log(messages)
-//       res.json(messages)
+//   knex('messages')
+//   .join('users', {'users.id': 'messages.sender_id'})
+//   .orderBy('messages.created_at', 'messages.desc')
+//   .where({receiver_id: req.params.user_id})
+//   .then(data => {
+//     console.log(data)
+//     res.json(data);
 //   });
-// })
+// });
+router.get('/:user_id/messages', (req, res, next) => {
+  let query = `SELECT sender_id, receiver_id, message, created_at, username, first_name, last_name, gender, user_pic FROM messages INNER JOIN users on (users.id = messages.sender_id) WHERE messages.receiver_id = ${req.params.user_id} AND messages.id = (SELECT sub_messages.id FROM messages as sub_messages WHERE sub_messages.receiver_id = messages.receiver_id and sub_messages.sender_id = messages.sender_id ORDER BY sub_messages.created_at desc LIMIT 1)`
+  knex.raw(query).then (messages => {
+    console.log(messages.rows)
+    res.json(messages.rows)
+  })
+});
 
 // GET users/:receiver_id/messages/:sender_id
 // A message thread
@@ -116,10 +109,21 @@ router.get('/:receiver_id/messages/:sender_id', (req, res, next) => {
   .orWhere({receiver_id: req.params.sender_id})
   .andWhere({sender_id: req.params.receiver_id})
   .orderBy('created_at', 'desc')
-  .then(data => {
-    console.log(data)
-    res.json(data)
+  .then(messages => {
+    console.log(messages)
+    res.json(messages)
   });
 });
+
+router.post('/messages', (req, res, next) => {
+  console.log("POST MESSAGE ROUTE!")
+  knex('messages')
+  .insert(req.body)
+  .returning('*')
+  .then(message => {
+    console.log(message)
+    res.json(message)
+  })
+})
 
 module.exports = router;
