@@ -1,3 +1,10 @@
-<p>
-  message-detail works!
-</p>
+<div class="container">
+  <div class="card">
+    <h3>Messages</h3>
+    <div class="message" [ngClass]="{'sent': message.sender_id == userState.id}"*ngFor="let message of messages">
+      <strong>{{ message.first_name }}:</strong><br>
+      {{ message.message }}<br>
+      Sent {{ message.created_at | date:'fullDate' }} at {{ message.created_at | date:'shortTime' }}
+    </div>
+  </div>
+</div>

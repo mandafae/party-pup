@@ -46,8 +46,6 @@ export class UserService {
   }
 
   deleteUser(id) {
-    // console.log("SERVICE FUNCTION FIRED!")
-    // console.log("ID IN SERVICE:", id)
     const url = `${this.usersUrl}/${id}`
     return this.http.delete(url).subscribe(res => console.log(res));
   }

@@ -84,22 +84,37 @@ router.get('/:user_id/dogs', (req, res, next) => {
 router.get('/:user_id/messages', (req, res, next) => {
   knex('messages')
   .join('users', {'users.id': 'messages.sender_id'})
+  .orderBy('messages.created_at', 'messages.desc')
   .where({receiver_id: req.params.user_id})
   .then(data => {
     console.log(data)
     res.json(data);
   });
 });
+// router.get('/:user_id/messages', (req, res, next) => {
+  // knex('messages')
+  // .join('users', {'users.id': 'messages.sender_id'})
+  // .where({receiver_id: req.params.user_id})
+  // .join(
+    // knex('messages')
+    // .groupBy('sender_id')
+    // .orderBy('messages.created_at', 'desc')
+    // )
+//     .then(messages => {
+//       console.log(messages)
+//       res.json(messages)
+//   });
+// })
 
 // GET users/:receiver_id/messages/:sender_id
 // A message thread
 router.get('/:receiver_id/messages/:sender_id', (req, res, next) => {
-  console.log("REQ.PARAMS:", req.params)
   knex('messages')
-  .join('users', {'users.id': 'messages.sender_id'})
+  .fullOuterJoin('users', {'users.id': 'messages.sender_id'})
   .where({receiver_id: req.params.receiver_id})
   .andWhere({sender_id: req.params.sender_id})
-  .orWhere({sender_id: req.params.receiver_id})
+  .orWhere({receiver_id: req.params.sender_id})
+  .andWhere({sender_id: req.params.receiver_id})
   .orderBy('created_at', 'desc')
   .then(data => {
     console.log(data)

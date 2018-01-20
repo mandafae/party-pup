@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../user.service';
 
@@ -14,12 +15,15 @@ export class MessageDetailComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
+      const sender_id = +this.route.snapshot.paramMap.get('sender_id');
+      this.viewMessageThread(sender_id);
     });
   }
 
@@ -28,6 +32,11 @@ export class MessageDetailComponent implements OnInit {
     this.userService.getMessageThread(sender_id, receiver_id).subscribe(messages => {
       this.messages = messages;
     })
+  }
+
+  ngAfterContentChecked() {
+    console.log("DETAIL USER:", this.userState);
+    console.log("MESSAGES:", this.messages)
   }
 
   goBack(): void {

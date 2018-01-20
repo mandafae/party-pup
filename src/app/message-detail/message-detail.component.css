@@ -19,6 +19,11 @@ p {
   border: 1px #000000 solid;
 }
 
-.profilePic {
-  border-radius: 100%;
+.message {
+  margin: 5px;
+  padding: 5px;
+}
+
+.sent {
+  text-align: right;
 }
