@@ -19,6 +19,21 @@ p {
   border: 1px #000000 solid;
 }
 
-.profilePic {
-  border-radius: 100%;
+.image-cropper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+  opacity: 1;
 }

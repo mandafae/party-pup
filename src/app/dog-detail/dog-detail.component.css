@@ -25,5 +25,7 @@ textarea {
 }
 
 .profilePic {
+  height: 200px;
   border-radius: 100%;
+  margin: 10px;
 }

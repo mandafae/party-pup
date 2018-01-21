@@ -34,10 +34,13 @@ export class DogsService {
   }
 
   deleteDog(dog_id) {
-    // console.log("SERVICE FUNCTION FIRED!")
-    // console.log("ID IN SERVICE:", dog_id)
     const url = `${this.dogsUrl}/${dog_id}`
     return this.http.delete(url).subscribe(res => console.log(res));
+  }
+
+  searchDogs(query) {
+    const url = `${this.dogsUrl}/search`
+    return this.http.post(url, query, httpOptions)
   }
 
   // Error handling

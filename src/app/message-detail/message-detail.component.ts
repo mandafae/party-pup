@@ -34,13 +34,18 @@ export class MessageDetailComponent implements OnInit {
     })
   }
 
-  submitMessage(message) {
+ submitMessage(message) {
+   // Build message to send to database
     message.sender_id = this.userState.id;
     message.receiver_id = +this.route.snapshot.paramMap.get('sender_id');
     message.created_at = Date.now();
     console.log(message)
-    this.userService.sendMessage(message).subscribe(message => {
-      this.messages.push(message);
+    // Send message to database
+    this.userService.sendMessage(message).subscribe(res => {
+      // Retrieve updated message thread
+      this.userService.getMessageThread(this.userState.id, message.receiver_id).subscribe((data) => {
+        this.messages = data;
+      })
     })
   }
 

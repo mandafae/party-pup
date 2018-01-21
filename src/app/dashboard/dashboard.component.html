@@ -1,20 +1,30 @@
 <div class="container">
   <div class="card" *ngFor="let dog of dogs">
-    <h3>{{ dog.dog_name }}</h3>
-    <p><img src="{{ dog.dog_pic }}" alt="{{ dog.dog_name }}'s photo"><br>
-    <strong>Weight:</strong> {{ dog.weight }} lbs<br>
-    <strong>Breed:</strong> {{ dog.breed }}<br>
-    <strong>Play Style(s):</strong> |
-        <span *ngIf="dog.play_style.body_slammer">Body Slammer | </span>
-        <span *ngIf="dog.play_style.boxer">Boxer | </span>
-        <span *ngIf="dog.play_style.cheerleader">Cheerleader | </span>
-        <span *ngIf="dog.play_style.cushy">Cushy | </span>
-        <span *ngIf="dog.play_style.explorer">Explorer | </span>
-        <span *ngIf="dog.play_style.shy">Shy | </span>
-        <span *ngIf="dog.play_style.speed">Speed Demon | </span>
-        <span *ngIf="dog.play_style.tag">Tag, You're It! | </span>
-        <span *ngIf="dog.play_style.wrestler">Wrestler | </span><br>
-    <strong>Additional Information:</strong> {{ dog.play_notes }}<br>
-    <a routerLink="/dogs/{{ dog.id }}">Click for more information!</a>
+    <div class="row">
+      <h3 class="center-align">{{ dog.dog_name }}</h3>
+    </div>
+    <div class="row">
+      <div class="col s3">
+        <div class="image-cropper">
+          <img src="{{ dog.dog_pic }}" alt="{{ dog.dog_name }}'s photo">
+        </div>
+      </div>
+      <div class="col s9">
+        <strong>Weight:</strong> {{ dog.weight }} lbs<br>
+        <strong>Breed:</strong> {{ dog.breed }}<br>
+        <strong>Play Style(s):</strong> |
+          <span *ngIf="dog.play_style.body_slammer">Body Slammer | </span>
+          <span *ngIf="dog.play_style.boxer">Boxer | </span>
+          <span *ngIf="dog.play_style.cheerleader">Cheerleader | </span>
+          <span *ngIf="dog.play_style.cushy">Cushy | </span>
+          <span *ngIf="dog.play_style.explorer">Explorer | </span>
+          <span *ngIf="dog.play_style.shy">Shy | </span>
+          <span *ngIf="dog.play_style.speed">Speed Demon | </span>
+          <span *ngIf="dog.play_style.tag">Tag, You're It! | </span>
+          <span *ngIf="dog.play_style.wrestler">Wrestler | </span><br>
+        <strong>Additional Information:</strong> {{ dog.play_notes }}<br>
+        <a routerLink="/dogs/{{ dog.id }}">Click for more information!</a>
+      </div>
+    </div>
   </div>
 </div>

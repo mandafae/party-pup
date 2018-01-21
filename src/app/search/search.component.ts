@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private dogService: DogsService
+    private dogsService: DogsService
   ) { }
 
   ngOnInit() {
@@ -20,6 +20,9 @@ export class SearchComponent implements OnInit {
 
   search(formData) {
     console.log(formData);
+    this.dogsService.searchDogs(formData).subscribe(dogs => {
+      console.log(dogs)
+    })
   }
 
 }

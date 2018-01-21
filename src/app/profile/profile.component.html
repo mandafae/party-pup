@@ -1,7 +1,9 @@
 <div class="container">
   <div class="card">
     <div>
-      <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture" class="profilePic">
+      <div class="image-cropper">
+        <img src="{{ user.user_pic }}" alt="{{ user.username }}'s profile picture">
+      </div>
       <h3 *ngIf="user.firstName">{{ user.first_name }}'s Information:</h3>
       <h3 *ngIf="!user.firstName">Your Information:</h3>
       <div *ngIf="!user.gender">
@@ -28,7 +30,9 @@
     <div>
       <h3>Your dog(s):</h3>
       <div *ngFor="let dog of user.dogs">
-        <img src="{{ dog.dog_pic }}" alt="Dog picture"><br>
+        <div class="image-cropper">
+          <img src="{{ dog.dog_pic }}" alt="{{ dog.dog_name }}'s picture">
+        </div>
         <table>
           <tr>
             <td><strong>Name:</strong></td>

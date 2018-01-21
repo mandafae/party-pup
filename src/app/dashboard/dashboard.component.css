@@ -20,5 +20,27 @@ p {
 }
 
 .profilePic {
+  max-height: 200px;
+  max-width: 200px;
   border-radius: 100%;
+  margin: 10px;
+  opacity: 1;
+}
+
+.image-cropper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
 }
