@@ -1,22 +1,25 @@
 <div class="container">
   <div class="card">
   <h3>Welcome to</h3>
+  <div class="image-cropper">
+    <img src="assets/images/dogs-in-party-hats.jpg" alt="These pups are ready to party!">
+  </div>
   <h1>Party Pup!</h1>
     <div>
       <span>Sign in/create Party Pup account:</span>
       <form #signInForm="ngForm">
         <div class="row">
-          <div class="input-field inline col s4">
+          <div class="input-field inline">
             <input type="text" placeholder="Username" name="username" ngModel>
           </div>
-          <div class="input-field inline col s4">
+          <div class="input-field inline">
             <input type="password" placeholder="Password" name="password" ngModel>
           </div>
-          <div class="input-field inline col s2">
-            <button class="waves-effect waves-light btn" (click)="signIn(signInForm.value)">Log In</button>
+          <div class="input-field inline">
+            <button class="waves-effect waves-light btn signin" (click)="signIn(signInForm.value)">Log In</button>
           </div>
-          <div class="input-field inline col s2">
-            <button class="waves-effect waves-light btn" (click)="signUp(signInForm.value)">Sign Up</button>
+          <div class="input-field inline">
+            <button class="waves-effect waves-light btn signin" (click)="signUp(signInForm.value)">Sign Up</button>
           </div>
         </div>
       </form>

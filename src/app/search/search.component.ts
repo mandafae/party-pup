@@ -9,6 +9,9 @@ import { DogsService } from '../dogs.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  searching: boolean = true;
+  displayResults: boolean = false;
+  searchResults: any;
 
   constructor(
     private userService: UserService,
@@ -19,9 +22,11 @@ export class SearchComponent implements OnInit {
   }
 
   search(formData) {
-    console.log(formData);
     this.dogsService.searchDogs(formData).subscribe(dogs => {
       console.log(dogs)
+      this.searchResults = dogs;
+      this.searching = false;
+      this.displayResults = true;
     })
   }
 

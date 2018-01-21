@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('breed').notNullable();
     table.integer('age_number').notNullable();
     table.string('age_unit').notNullable();
-    table.string('play_style').notNullable();
+    table.jsonb('play_style').notNullable();
     table.string('play_notes');
     table.boolean('fence_required').notNullable().defaultTo(false);
     table.boolean('health_issues').notNullable().defaultTo(false);
