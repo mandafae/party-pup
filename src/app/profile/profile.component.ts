@@ -24,17 +24,18 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Get user from user service
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
+      // Get dogs for current user (profile route)
+      this.userService.getUser(this.userState.id).subscribe(user => {
+        this.user = user
+        // Parse each dog's play styles
+        this.user.dogs.forEach(dog => {
+          dog.play_style = JSON.parse(dog.play_style);
+        });
+      })
     });
-    this.getUser();
-  }
-
-  ngAfterContentChecked() {
-    this.user.dogs.forEach(dog => {
-      dog.play_style = JSON.parse(dog.play_style);
-    });
-    console.log("PROFILE USER:", this.user);
   }
 
   getUser() {

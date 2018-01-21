@@ -2,6 +2,10 @@ p {
   text-align: left;
 }
 
+.small {
+  font-size: small;
+}
+
 .container {
   width: 100vw;
   display: flex;
@@ -35,4 +39,8 @@ img {
   margin: 0 auto;
   height: 100%;
   width: auto;
+}
+
+button {
+  margin-top: 5px;
 }

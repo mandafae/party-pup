@@ -24,11 +24,22 @@ export class UpdateDogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Get dog id from activated route
     this.dog_id = this.route.snapshot.paramMap.get('dog_id');
+    // Get user from user service
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
+      // Get user's dogs (profile route)
+      this.userService.getUser(this.userState.id).subscribe(user => {
+        this.userState = user
+        // Get the current dog
+        this.currentDog = this.userState.dogs.find((dogs) => {
+          return dogs.id == this.dog_id;
+        })
+        // Parse the dog's play styles
+        this.currentDog.play_style = JSON.parse(this.currentDog.play_style);
+      })
     });
-    this.getUser();
   }
 
   getUser() {
@@ -36,6 +47,7 @@ export class UpdateDogComponent implements OnInit {
   }
 
   updateDogInfo(formData) {
+    // Build the updated information for the database
     formData.id = this.currentDog.id;
     formData.fixed = formData.fixed? true : false;
     formData.play_style = JSON.stringify(formData.play_style);
@@ -45,18 +57,6 @@ export class UpdateDogComponent implements OnInit {
     this.dogsService.editDog(formData).subscribe((dog) => {
       this.router.navigate([`${this.userState.id}/profile`])
     })
-  }
-
-  ngAfterContentChecked() {
-    // console.log("UPDATE DOG USER:", this.userState);
-    // console.log("DOG ID:", this.dog_id);
-    // console.log("CURRENT DOG:", this.currentDog);
-    // console.log("THIS.USERSTATE.DOGS:", this.userState.dogs);
-    this.currentDog = this.userState.dogs.find((dogs) => {
-      return dogs.id == this.dog_id;
-    })
-    this.currentDog.play_style = JSON.parse(this.currentDog.play_style);
-    console.log("PLAY STYLE:", this.currentDog.play_style)
   }
 
   goBack(): void {

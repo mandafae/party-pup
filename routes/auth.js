@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt-as-promised');
 const knex = require('../db/knex');
-const cookies = require('ng2-cookies')
 
 router.post('/login', (req, res, next) => {
   console.log("REGULAR SIGN IN ROUTE!");
