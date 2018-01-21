@@ -54,6 +54,7 @@ export class UpdateDogComponent implements OnInit {
     formData.fence_required = formData.fence_required? true : false;
     formData.health_issues = formData.health_issues? true : false;
     console.log("UPDATE FORM:", formData)
+    // Send form data to database and redirect back to profile
     this.dogsService.editDog(formData).subscribe((dog) => {
       this.router.navigate([`${this.userState.id}/profile`])
     })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
 import { DogsService } from '../dogs.service';
@@ -11,9 +12,11 @@ import { DogsService } from '../dogs.service';
 export class SearchComponent implements OnInit {
   searching: boolean = true;
   displayResults: boolean = false;
+  noResults: boolean = false;
   searchResults: any;
 
   constructor(
+    private location: Location,
     private userService: UserService,
     private dogsService: DogsService
   ) { }
@@ -27,7 +30,14 @@ export class SearchComponent implements OnInit {
       this.searchResults = dogs;
       this.searching = false;
       this.displayResults = true;
+      if (this.searchResults.length === 0) {
+        this.noResults = true;
+      }
     })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

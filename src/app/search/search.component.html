@@ -107,4 +107,10 @@
       </div>
     </div>
   </div>
+  <div *ngIf="noResults">
+    <div class="card">
+      <p style="color:red;">We're sorry. That search didn't return any results. Please try again.</p>
+      <button class="waves-effect waves-light btn" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
 </div>
