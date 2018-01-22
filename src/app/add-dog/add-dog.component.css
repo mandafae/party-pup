@@ -36,3 +36,7 @@ img {
   height: 100%;
   width: auto;
 }
+
+button {
+  margin-top: 5px;
+}
