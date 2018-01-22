@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 import { UserService } from '../user.service';
 import { DogsService } from '../dogs.service';
@@ -19,6 +20,7 @@ export class UpdateDogComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private http: HttpClient,
     private userService: UserService,
     private dogsService: DogsService
   ) { }
