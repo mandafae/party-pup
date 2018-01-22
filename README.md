@@ -12,7 +12,7 @@ Technologies:
 - Materialize CSS
 - Heroku (for deployment)
 - AWS (for image hosting)
-<hr>
+---
 ## Challenges:
 - Learning the ins and outs of Angular 5. I've worked with AngularJS and React before, but **this was my first app built in Angular 5**. I learned a lot about Angular forms and working with Observables.
 - Building complex SQL queries using Knex. Many of **my views required getting very specific information** and performing joins that I did not have experience with. I utilized raw SQL queries, as Knex didn't have some of the methods I required built-in.
