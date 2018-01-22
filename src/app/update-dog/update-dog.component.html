@@ -49,8 +49,60 @@
       <label for="health">Yes</label>
       <textarea name="play_notes" id="health-notes" placeholder="e.g., seizures, arthritis, etc" [ngModel]="currentDog.health_notes"></textarea>
       <textarea name="bio" id="bio" placeholder="Tell us about your pup!" [ngModel]="currentDog.bio"></textarea>
+      <label for="file-input">Choose Dog Photo: </label>
+      <input type="file" id="file-input">
+      <span id="status"></span>
+      <input type="hidden" id="dog_pic" name="dog_pic" ngModel><br>
       <input type="submit" class="waves-effect waves-light btn" style="width:120px;">
     </form>
     <button class="waves-effect waves-light btn" style="width:120px; margin-top:5px;" (click)="goBack()">Cancel</button>
   </div>
 </div>
+<script>
+(() => {
+  document.getElementById("file-input").onchange = () => {
+    const files = document.getElementById('file-input').files;
+    const file = files[0];
+    if(file == null){
+      return alert('No file selected.');
+    }
+    console.log("CALLING GETSIGNEDREQUEST!")
+    getSignedRequest(file);
+  };
+})();
+function getSignedRequest(file){
+  console.log("GETSIGNEDREQUEST FIRED!")
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        const response = JSON.parse(xhr.responseText);
+        console.log("GET /SIGN-S3:", response)
+        uploadFile(file, response.signedRequest, response.url);
+      }
+      else{
+        alert('Could not get signed URL.');
+      }
+    }
+  };
+  xhr.send();
+}
+function uploadFile(file, signedRequest, url){
+  console.log("UPLOADFILE FIRED!")
+  const xhr = new XMLHttpRequest();
+  xhr.open('PUT', signedRequest);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        document.getElementById('status').innerText = "Image uploaded successfully!";
+        document.getElementById('dog_pic').value = url;
+      }
+      else{
+        alert('Could not upload file.');
+      }
+    }
+  };
+  xhr.send(file);
+}
+</script>

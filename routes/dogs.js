@@ -13,13 +13,10 @@ router.get('/', (req, res, next) => {
 // POST dogs
 // Add a new dog
 router.post('/', (req, res, next) => {
-  console.log("DOGS POST ROUTE");
-  console.log("REQ.BODY:", req.body);
   knex('dogs')
   .returning('*')
   .insert(req.body)
   .then(dog => {
-    console.log(dog)
     res.json(dog)
   });
 });
@@ -33,7 +30,6 @@ router.get('/:dog_id', (req, res, next) => {
   .where({'dogs.id': req.params.dog_id})
   .first()
   .then(dog => {
-    console.log("DOG:", dog)
     res.json(dog)
   });
 });
@@ -41,15 +37,12 @@ router.get('/:dog_id', (req, res, next) => {
 // PATCH dogs/:dog_id
 // Update dog's info
 router.patch('/:dog_id', (req, res, next) => {
-  console.log("DOGS PATCH ROUTE!");
-  console.log(req.body)
   knex('dogs')
   .where({id: req.params.dog_id})
   .first()
   .update(req.body)
   .returning('*')
   .then(dog => {
-    console.log("UPDATED EXPRESS DOG:", dog);
     res.json(dog)
   })
 });
@@ -139,7 +132,6 @@ router.post('/search', (req, res, next) => {
     query.where({gender: 'male'}).orWhere({gender: 'female'})
   }
   query.then(dogs => {
-    console.log(dogs)
     res.json(dogs)
   })
 })
