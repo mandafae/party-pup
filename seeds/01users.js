@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
                 gender: 'female',
                 user_pic: 'https://s3.us-east-2.amazonaws.com/party-pup/lovemydog77.jpg',
                 hash: '$2a$12$T0IqfaOKFP6jG7le24skOOxZBTJMopvzvwMr0Y3NbWQsdraQE8P1G'},
-        {username: 'Pookie4Ever',
+        {username: 'Fifi4Ever',
                 first_name: 'John',
                 last_name: 'Johnson',
                 street_address: '8820 Burnet Rd',
