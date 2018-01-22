@@ -25,16 +25,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.userService.currentUser.subscribe(user => this.userState = user)
-    console.log("NAVBAR this.userState:", this.userState)
   }
 
   signOut(): void {
     this.router.navigate(['']);
     this.authService.signOut();
     this.userService.setState(null);
-  }
-
-  ngOnDestroy() {
   }
 
 }

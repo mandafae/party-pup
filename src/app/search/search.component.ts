@@ -26,7 +26,6 @@ export class SearchComponent implements OnInit {
 
   search(formData) {
     this.dogsService.searchDogs(formData).subscribe(dogs => {
-      console.log(dogs)
       this.searchResults = dogs;
       this.searching = false;
       this.displayResults = true;

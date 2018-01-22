@@ -14,18 +14,12 @@ export class InboxComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    // console.log("MESSAGES ON INIT:", this.messages)
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
       this.userService.getMessages(this.userState.id).subscribe(data => {
         this.messages = data;
         });
     });
-  }
-
-  ngAfterContentChecked() {
-    // console.log("INBOX USER:", this.userState);
-    // console.log("MESSAGES:", this.messages)
   }
 
 }

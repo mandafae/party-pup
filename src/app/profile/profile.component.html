@@ -30,7 +30,7 @@
     <div>
       <h3>Your dog(s):</h3>
       <div *ngFor="let dog of user.dogs">
-        <div class="image-cropper">
+        <div *ngIf="dog.dog_pic" class="image-cropper">
           <img src="{{ dog.dog_pic }}" alt="{{ dog.dog_name }}'s picture">
         </div>
         <table>

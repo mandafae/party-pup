@@ -24,16 +24,16 @@ export class AddDogComponent implements OnInit {
     this.userService.currentUser.subscribe((user) => {
       this.userState = user;
     });
-    console.log("ADD DOG USER:", this.userState);
   }
 
   addDog(formData) {
+    // Build data for database
     formData.owner_id = this.userState.id;
     formData.fixed = formData.fixed? true : false;
     formData.play_style = JSON.stringify(formData.play_style);
     formData.fence_required = formData.fence_required? true : false;
     formData.health_issues = formData.health_issues? true : false;
-    console.log(formData)
+    // Send to database and route back to profile
     this.dogsService.postDog(formData).subscribe((dog) => {
       this.router.navigate([`${this.userState.id}/profile`])
     });

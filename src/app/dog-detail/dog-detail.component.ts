@@ -42,19 +42,16 @@ export class DogDetailComponent implements OnInit {
   }
 
   submitMessage(message) {
+    // Build message for database
     message.sender_id = this.userState.id;
     message.receiver_id = this.dog.owner_id;
     message.created_at = Date.now();
-    console.log(message)
+    // Send message to database
     this.userService.sendMessage(message).subscribe(message => {
+      // Toggle text box and show confirmation message
       this.showForm = !this.showForm;
       this.messageSent = true;
     })
-  }
-
-  ngAfterContentChecked() {
-    console.log("DETAIL USER:", this.userState);
-    console.log("DETAIL DOG:", this.dog)
   }
 
   goBack(): void {

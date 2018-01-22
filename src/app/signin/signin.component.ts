@@ -29,7 +29,6 @@ export class SigninComponent implements OnInit {
   signIn(formData) {
     this.http.post('auth/login', formData).subscribe((user) => {
         this.userState = user;
-        console.log("SIGNIN this.userState:", this.userState)
         this.userService.setState(this.userState);
         this.router.navigate([`${this.userState.id}/dashboard`])
       });
@@ -38,7 +37,6 @@ export class SigninComponent implements OnInit {
   signUp(formData) {
     this.userService.postUser(formData).subscribe((user) => {
         this.userState = user;
-        console.log("SIGN UP this.userState:", this.userState)
         this.userService.setState(this.userState);
         this.router.navigate([`${this.userState.id}/profile`])
       });
@@ -50,7 +48,6 @@ export class SigninComponent implements OnInit {
       this.userService.googleGetUser(user).subscribe((user) => {
         this.userState = user;
         this.userService.setState(this.userState);
-        console.log("GOOGLE SIGN IN USER:", this.userState)
         // Handle new users
         if (!this.userState.gender) {
           this.router.navigate([`${this.userState.id}/profile`])
@@ -67,7 +64,6 @@ export class SigninComponent implements OnInit {
       this.userService.FBgetUser(user).subscribe((user) => {
         this.userState = user;
         this.userService.setState(this.userState);
-        console.log("FB SIGN IN USER:", this.userState)
         // Handle new users
         if (!this.userState.gender) {
           this.router.navigate([`${this.userState.id}/profile`])
@@ -79,7 +75,7 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(user => this.userState = user)
+    // this.userService.currentUser.subscribe(user => this.userState = user)
   }
 
 }

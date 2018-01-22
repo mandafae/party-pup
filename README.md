@@ -9,6 +9,7 @@ My goal was to simplify the process of finding friends for man's (or woman's) be
 - PostgreSQL
 - Knex.js
 - Angular 5
+- Bcrypt
 - Materialize CSS
 - Heroku (for deployment)
 - AWS (for image hosting)

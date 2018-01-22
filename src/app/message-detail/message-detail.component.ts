@@ -39,7 +39,6 @@ export class MessageDetailComponent implements OnInit {
     message.sender_id = this.userState.id;
     message.receiver_id = +this.route.snapshot.paramMap.get('sender_id');
     message.created_at = Date.now();
-    console.log(message)
     // Send message to database
     this.userService.sendMessage(message).subscribe(res => {
       // Retrieve updated message thread
@@ -47,11 +46,6 @@ export class MessageDetailComponent implements OnInit {
         this.messages = data;
       })
     })
-  }
-
-  ngAfterContentChecked() {
-    // console.log("DETAIL USER:", this.userState);
-    // console.log("MESSAGES:", this.messages)
   }
 
   goBack(): void {

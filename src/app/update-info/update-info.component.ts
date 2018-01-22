@@ -21,16 +21,16 @@ export class UpdateInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe(user => this.userState = user)
-    console.log("UPDATE INFO USER:", this.userState);
   }
 
   updateInfo(formData) {
+    // Build data to send to database
     let id = this.userState.id;
     formData.id = id;
+    // Send to database, update user state, and redirect back to profile
     this.userService.editUser(formData).subscribe((user) => {
       this.userState = user[0];
       this.userService.setState(this.userState);
-      console.log("USER AFTER UPDATE:", this.userState)
       this.router.navigate([`${this.userState.id}/profile`])
     })
   }
