@@ -1,13 +1,10 @@
-p {
-  text-align: left;
-}
-
 fieldset {
   margin: 10px;
 }
 
 .container {
   width: 100vw;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +17,16 @@ fieldset {
   margin: 10px;
   padding: 10px;
   border: 1px #000000 solid;
+  text-align: left;
+}
+
+.center {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-cropper {

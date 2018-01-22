@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="searching">
+  <div class="center" *ngIf="searching">
     <div class="card">
       <h3>Find A Puppy Playmate</h3>
       <form #searchForm="ngForm" (ngSubmit)="search(searchForm.value)">
@@ -77,7 +77,7 @@
       </form>
     </div>
   </div>
-  <div *ngIf="displayResults">
+  <div class="center" *ngIf="displayResults">
     <div class="card" *ngFor="let dog of searchResults">
       <div class="row">
         <h3 class="center-align">{{ dog.dog_name }}</h3>
@@ -107,7 +107,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="noResults">
+  <div class="center" *ngIf="noResults">
     <div class="card">
       <p style="color:red;">We're sorry. That search didn't return any results. Please try again.</p>
       <button class="waves-effect waves-light btn" (click)="goBack()">Go Back</button>
