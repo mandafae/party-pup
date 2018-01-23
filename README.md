@@ -29,28 +29,35 @@ My goal was to simplify the process of finding friends for man's (or woman's) be
 ![Sign In](readme/signin.png)
 Users can either create an account with Party Pup or choose social sign-in with Facebook or Google.
 
+
 ### 2. Browse Dogs
 ![Dashboard](readme/dashboard.png)
 Users are brought to a dashboard displaying dogs and some of their basic information. From here, they can click on a dog for more information or navigate to any of the other parts of the app using the navigation at the top.
+
 
 ### 3. View A Dog
 ![Detail](readme/detail.png)
 Users can view a dog's details and message the pet parent to set up a playdate from here.
 
+
 ### 4. Search For Dogs
 ![Search](readme/search.png)
 Alternatively, users can search for dogs based on various criteria. After searching, they are brought to a page similar to the dashboard, enabling them to view more details and message pet parents.
+
 
 ### 5. Message Inbox
 ![Inbox](readme/inbox.png)
 Here, users can view all of the messages they've received. The sender and date of most recent message are displayed, along with the beginning of the message.
 
+
 ### 6. View Message Thread
 ![Message Thread](readme/message-thread.png)
 Users can view a message thread with a user and send more messages. When a message is sent, it displays in the thread in real time.
 
+
 ### 7. Profile
 ![Profile](readme/profile.png)
 This is the user profile. Users can view their details, as well as all details about their dog(s). From this page, they can edit all of this information, add a new dog, and delete dogs or their account entirely.
+
 
 **Now it's time for a puppy party!**
