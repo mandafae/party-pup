@@ -43,8 +43,10 @@ export class SigninComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
+    // Sign in to Google
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
+      // Get user from Party Pup database
       this.userService.googleGetUser(user).subscribe((user) => {
         this.userState = user;
         this.userService.setState(this.userState);
@@ -59,8 +61,10 @@ export class SigninComponent implements OnInit {
   }
 
   signInWithFB(): void {
+    // Sign in to Facebook
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
+      // Get user from Party Pup database
       this.userService.FBgetUser(user).subscribe((user) => {
         this.userState = user;
         this.userService.setState(this.userState);
