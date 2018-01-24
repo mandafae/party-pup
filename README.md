@@ -1,5 +1,5 @@
 # Party Pup
-**Party Pup is a full-stack web app that helps dog owners arrange puppy playdates. It was built it two weeks.**
+**Party Pup is a full-stack web app that helps dog owners arrange puppy playdates. It was built in two weeks.**
 
 My goal was to simplify the process of finding friends for man's (or woman's) best friend. Being a pet owner all my life, and having worked with dogs for years, I noticed that dogs play in many different ways, and, often, those ways don't work well together. Party Pup allows users to quickly and easily find dogs who have similar play styles to their own pup, and then set up meetings with those dogs' owners so that their dogs can play together.
 
