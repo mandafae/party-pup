@@ -26,7 +26,7 @@ I built this app to simplify the process of finding friends for man's (or woman'
 ---
 ## Walkthrough:
 
-###[Video Walkthrough](https://youtu.be/Qhno3vW4JW0)
+[Video Walkthrough](https://youtu.be/Qhno3vW4JW0)
 
 ### 1. Sign In
 ![Sign In](readme/signin.png)
