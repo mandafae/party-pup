@@ -25,6 +25,9 @@ I built this app to simplify the process of finding friends for man's (or woman'
 - I originally intended to use PassportJS for social sign-in. However, I eventually realized this wasn't the best option for my project (it is too robust and also requires a full redirect, which isn't in line with a single page app) and **had to switch gears and find a different solution**. I found a library that is specifically meant to be used with Angular and decided this was a better option.
 ---
 ## Walkthrough:
+
+###[Video Walkthrough](https://youtu.be/Qhno3vW4JW0)
+
 ### 1. Sign In
 ![Sign In](readme/signin.png)
 Users can either create an account with Party Pup or choose social sign-in with Facebook or Google.
